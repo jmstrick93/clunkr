@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model_name: MyString
+  company_id: 1
+  car_type_id: 1
+  year: 1
+  photo_url: MyString
+
+two:
+  model_name: MyString
+  company_id: 1
+  car_type_id: 1
+  year: 1
+  photo_url: MyString
