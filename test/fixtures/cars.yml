@@ -2,14 +2,14 @@
 
 one:
   model_name: MyString
-  company_id: 1
+  brand_id: 1
   car_type_id: 1
   year: 1
   photo_url: MyString
 
 two:
   model_name: MyString
-  company_id: 1
+  brand_id: 1
   car_type_id: 1
   year: 1
   photo_url: MyString
