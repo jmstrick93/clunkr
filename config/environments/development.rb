@@ -42,6 +42,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  #Setup step for enabling Devise engine
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
