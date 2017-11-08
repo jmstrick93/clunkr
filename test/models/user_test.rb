@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test "should not be valid without name" do
+    user = User.new(email: 'jmstricker93@gmail.com', password:'password')
+    assert_not user.save
+  end
 end

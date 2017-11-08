@@ -1,7 +1,7 @@
 class Resource < ApplicationRecord
 
-  validates :title => uniqueness: {case_sensitive: false}
-  validates :source_url => presence: true
+  validates :title, uniqueness: {case_sensitive: false}
+  validates :source_url, presence: true
 
 
   belongs_to :car
