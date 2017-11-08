@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  model_name: MyString
-  brand_id: 1
-  car_type_id: 1
-  year: 1
+  name: 911
+  brand: porsche
+  year: 1994
   photo_url: MyString
 
 two:
-  model_name: MyString
-  brand_id: 1
-  car_type_id: 1
-  year: 1
+  name: MGB
+  brand: mg
+  year: 1970
   photo_url: MyString

@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  validates :name, uniqueness: {case_sensitive: false, scope: :year}
+  validates :name, presence: true, uniqueness: {case_sensitive: false, scope: :year}
   validates :year, presence: true, numericality: true, length: {is: 4}
   validates :brand_id, presence: true
 

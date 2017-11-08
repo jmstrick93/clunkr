@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  logo: MyString
+coupe:
+  name: Coupe
 
-two:
-  name: MyString
-  logo: MyString
+roadster:
+  name: Roadster
+
+gt:
+  name: gt
+
+sedan:
+  name: Sedan

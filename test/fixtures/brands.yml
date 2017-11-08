@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mg:
+  name: MG
+  logo: nil
+
+porsche:
+  name: Porsche
+  logo: nil
+
+honda:
+  name: Honda
+  logo: nil
