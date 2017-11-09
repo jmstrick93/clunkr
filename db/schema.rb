@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20171109151316) do
     t.string "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity"
   end
 
   create_table "resource_types", force: :cascade do |t|

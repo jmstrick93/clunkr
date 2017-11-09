@@ -9,7 +9,7 @@
 #brands
 porsche = Brand.create(name: "Porsche")
 mg = Brand.create(name: "MG")
-chevy = Brand.create("Chevrolet")
+chevy = Brand.create(name: "Chevrolet")
 
 #car_types
 sedan = CarType.create(name:"sedan")
@@ -21,10 +21,11 @@ impala = Car.create(name: "Impala", brand: chevy, year: 1969, photo_url: "https:
 ")
 porsche911 = Car.create(name: "911", brand: porsche, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg")
 
-mgb = Car.create(name: "MGB", brand: mg, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/MG_MGB_open_roadster_1969.jpg/1024px-MG_MGB_open_roadster_1969.jpg"
+mgb = Car.create(name: "MGB", brand: mg, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/MG_MGB_open_roadster_1969.jpg/1024px-MG_MGB_open_roadster_1969.jpg")
 
 #users
 jim = User.create(name: "Jim", email: "jmstricker93@gmail.com", password: "password")
+
 mike = User.create(name: "Mike", email: "strickergang@live.com", password: "password")
 
 #resource_types
@@ -38,7 +39,7 @@ porsche911_manual = porsche911.resources.create(title: "1969 Porsche 911 Owner's
 
 mgb_manual = mgb.resources.create(title: "1969 MGB Owner's Manual", source_url: "http://www.geomatique-liege.be/MGJP/DocumentsPDF/MGB_Workshop_Manual.pdf", resource_type_id: manual.id)
 
-porsche911_video = porsche911.resources.create(title: "1969 Porsche 911S "Rush" Fully Restored.", source_url: "https://www.youtube.com/watch?v=SHfWA-nI7IE", resource_type_id: video.id)
+porsche911_video = porsche911.resources.create(title: "1969 Porsche 911S 'Rush' Fully Restored.", source_url: "https://www.youtube.com/watch?v=SHfWA-nI7IE", resource_type_id: video.id)
 
 impala_video = impala.resources.create(title: "1969 Chevrolet Impala Custom Coupe Five-Speed", source_url: "https://www.youtube.com/watch?v=VVWXsssZILM", resource_type_id: video.id)
 
