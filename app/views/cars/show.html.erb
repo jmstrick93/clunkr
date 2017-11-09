@@ -8,9 +8,9 @@
    <% end %>
  </ul>
 
- <h4>Owners: <%= @car.users.count %></h4>
+ <h4>Owners: <%= @car.users.uniq.count %></h4>
   <ul>
-    <% @car.users.each do |user| %>
+    <% @car.users.uniq.each do |user| %>
       <li><%= link_to user.name, user_path(user) %></li>
     <% end %>
   </ul>
