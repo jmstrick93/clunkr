@@ -7,6 +7,5 @@ class User < ApplicationRecord
   has_many :user_cars
   has_many :cars, through: :user_cars
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 end
