@@ -7,4 +7,10 @@ class CarTypeTest < ActiveSupport::TestCase
     assert_not car_type.save, "Saved without a name"
   end
 
+  #associations
+
+  test "has many cars" do
+
+  end
+
 end

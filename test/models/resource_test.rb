@@ -22,7 +22,11 @@ class ResourceTest < ActiveSupport::TestCase
     assert_not resource.save, "saved without source_url"
   end
 
-  test "saves without car_id" do
+  test "optionally has car_id" do
+    #do this tomorrow
+  end
+
+  test "can save without car_id" do
     title = "Title"
     type = ResourceType.find_by(name: "Manual")
     url = "URL"

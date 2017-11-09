@@ -7,4 +7,10 @@ class ResourceTypeTest < ActiveSupport::TestCase
     assert_not type.save, "saved without name"
   end
 
+  #associations
+
+  test "has many resources" do
+
+  end
+
 end

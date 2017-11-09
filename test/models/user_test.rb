@@ -16,4 +16,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.save, "Saved without an email"
   end
 
+  test "has many cars" do
+
+  end
+
+  # test "has many car types" do
+    # is this possible??
+    #probably with a custom method
+  # end
+
 end

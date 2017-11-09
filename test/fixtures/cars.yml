@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+911:
   name: 911
   brand: porsche
   year: 1994
   photo_url: MyString
 
-two:
+MGB:
   name: MGB
   brand: mg
   year: 1970
