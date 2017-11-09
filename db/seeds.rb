@@ -20,6 +20,7 @@ coupe = CarType.create(name: "coupe")
 impala = Car.create(name: "Impala", brand_id: chevy.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG")
 impala.car_types << sedan
 impala.save
+binding.pry
 
 
 porsche911 = Car.create(name: "911", brand_id: porsche.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg")
@@ -33,9 +34,9 @@ mgb.car_types << coupe
 mgb.save
 
 #users
-jim = User.create(name: "Jim", email: "jmstricker93@gmail.com", password: "password")
+jim = User.create(username: "Jim", email: "jmstricker93@gmail.com", password: "password")
 
-mike = User.create(name: "Mike", email: "strickergang@live.com", password: "password")
+mike = User.create(username: "Mike", email: "strickergang@live.com", password: "password")
 
 #resource_types
 manual = ResourceType.create(name: "manual")

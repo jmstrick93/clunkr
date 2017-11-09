@@ -11,6 +11,6 @@
  <h4>Owners: <%= @car.users.uniq.count %></h4>
   <ul>
     <% @car.users.uniq.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %></li>
+      <li><%= link_to user.username, user_path(user) %></li>
     <% end %>
   </ul>
