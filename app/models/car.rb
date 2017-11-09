@@ -17,6 +17,10 @@ class Car < ApplicationRecord
     self.brand.name
   end
 
+  def full_title
+    "#{year} #{brand_name} #{name}"
+  end
+
 
 
 
