@@ -11,3 +11,16 @@ MGB:
   brand: mg
   year: 1970
   photo_url: MyString
+
+midget:
+  name: Midget
+  brand: mg
+  year: 1970
+  photo_url: MyString
+
+accord:
+  name: Accord
+  brand: honda
+  year: 1990
+  car_types: sedan, coupe
+  photo_url: MyString
