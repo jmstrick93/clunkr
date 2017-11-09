@@ -20,8 +20,5 @@ class Car < ApplicationRecord
   def full_title
     "#{year} #{brand_name} #{name}"
   end
-
-
-
-
+  
 end
