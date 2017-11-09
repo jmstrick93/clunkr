@@ -14,5 +14,30 @@ Brand index page
 Car type index page
 
 Resources index page
+(resources can be nested under a car)
 
 (All searchable with Ctrl+F)
+
+
+
+car image urls
+
+MGB: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/MG_MGB_open_roadster_1969.jpg/1024px-MG_MGB_open_roadster_1969.jpg
+
+Porsche 911:
+https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg
+
+Chevy Impala:
+https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG
+
+
+Car Manual URLs:
+
+MGB 1969
+http://www.geomatique-liege.be/MGJP/DocumentsPDF/MGB_Workshop_Manual.pdf
+
+Porsche 911 1969
+http://content.us.porsche-clubs.porsche.com/PorscheClubs/klassieke-porsche-911-en-912-club/files/Porsche911T1969_1970USownersmanual.pdf
+
+Chevy Impala 1969
+https://www.manualslib.com/manual/928984/Chevrolet-Impala-1969.html?page=2#manual
