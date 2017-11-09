@@ -1,0 +1,18 @@
+Clunkr should have:
+
+#everything is viewable, but you cant add or edit things without logging in
+
+Login page
+Create user page
+navbar with contextual changes
+
+Home Page (car index page)
+Add car page
+Add resource page
+
+Brand index page
+Car type index page
+
+Resources index page
+
+(All searchable with Ctrl+F)
