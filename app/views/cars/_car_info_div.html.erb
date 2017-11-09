@@ -1,4 +1,6 @@
 <div>
-  <%= img_tag car.photo_url %>
-  <%= content_tag(:p, link_to car_path(car)) %>
+  <%= link_to((image_tag car.photo_url, size: "300x200"), car_path(car)) %>
+  <%= content_tag(:p, link_to("#{car.year} #{car.brand_name} #{car.name}", car_path(car))) %>
+  <br></br>
+
 </div>
