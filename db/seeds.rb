@@ -17,11 +17,11 @@ roadster = CarType.create(name: "roadster")
 coupe = CarType.create(name: "coupe")
 
 #cars
-impala = Car.create(name: "Impala", brand: chevy, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG
+impala = Car.create(name: "Impala", brand_id: chevy.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG
 ")
-porsche911 = Car.create(name: "911", brand: porsche, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg")
+porsche911 = Car.create(name: "911", brand_id: porsche.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg")
 
-mgb = Car.create(name: "MGB", brand: mg, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/MG_MGB_open_roadster_1969.jpg/1024px-MG_MGB_open_roadster_1969.jpg")
+mgb = Car.create(name: "MGB", brand_id: mg.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/MG_MGB_open_roadster_1969.jpg/1024px-MG_MGB_open_roadster_1969.jpg")
 
 #users
 jim = User.create(name: "Jim", email: "jmstricker93@gmail.com", password: "password")
