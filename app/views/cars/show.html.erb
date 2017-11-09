@@ -1,9 +1,16 @@
 <h1><%= @car.full_title %></h1>
 <%= image_tag(@car.photo_url, size: "600x400") %>
 
- <!-- <h4>Resources: </h4>
+ <h4>Resources: </h4>
  <ul>
    <% @car.resources.each do |r| %>
-     <li>link_to</li>
+     <li><%= link_to r.full_title, car_resource_path(r)%></li>
    <% end %>
- </ul> -->
+ </ul>
+
+ <h4>Owners: <%= @car.users.count %></h4>
+  <ul>
+    <% @car.users.each do |user| %>
+      <li><%= link_to user.name, user_path(user) %></li>
+    <% end %>
+  </ul>
