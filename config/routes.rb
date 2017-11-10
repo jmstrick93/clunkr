@@ -16,6 +16,5 @@ Rails.application.routes.draw do
 
   get 'log_out', to: 'sessions#destroy', as: 'log_out'
 
-  get '/auth/google_oauth2/callback', to: "sessions#create"
-
+  get '/auth/google_oauth2/callback', to: "sessions#create_from_omniauth"
 end
