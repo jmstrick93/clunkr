@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       prep_flash_errors(@user)
       redirect_to sign_up_path
     else
-      flash[:notice] = "Successfully Logged In"
+      flash[:notice] = "Successfully Signed Up"
       redirect_to root_path
     end
   end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :username)
+    params.require(:user).permit(:name, :email, :password, :username, :uid)
   end
 
 

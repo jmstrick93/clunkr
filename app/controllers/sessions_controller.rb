@@ -6,9 +6,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     if auth
-      raise auth.inspect
+      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        u.username = auth['info']['name']
+        u.email = auth['info']['email']
+      end
+      session[:user_id] = @user.id
+      flash[:notice] = "Successfully Logged In"
+      redirect_to root_path
     else
       if @user = User.find_by(email: params[:email])
         if @user.authenticate(params[:password])
@@ -34,7 +39,5 @@ class SessionsController < ApplicationController
   def auth
     request.env['omniauth.auth']
   end
-
-
 
 end
