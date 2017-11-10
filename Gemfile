@@ -32,6 +32,14 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bcrypt', '~> 3.1.7'
 
+#general omniauth enabling
+gem 'omniauth'
+#for google omniauth
+gem 'omniauth-google-oauth2'
+
+gem 'dotenv-rails'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

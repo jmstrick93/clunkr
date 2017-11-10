@@ -1,3 +1,8 @@
+Google OAuth Credentials
+
+Authorized Redirect URLS : http://localhost:3000/auth/google_oauth2/callback
+
+
 Clunkr should have:
 
 #everything is viewable, but you cant add or edit things without logging in
