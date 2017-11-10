@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #brands
-porsche = Brand.create(name: "Porsche")
-mg = Brand.create(name: "MG")
-chevy = Brand.create(name: "Chevrolet")
+porsche = Brand.create(name: "Porsche", logo: "https://www.logodesignlove.com/images/car/porsche-logo-01.jpg")
+mg = Brand.create(name: "MG", logo: "https://upload.wikimedia.org/wikipedia/en/6/66/New_mg_logo.png")
+chevy = Brand.create(name: "Chevrolet", logo: "http://www.carlogos.org/logo/Chevrolet-logo-2013-640x281.jpg")
 
 #car_types
 sedan = CarType.create(name:"sedan")

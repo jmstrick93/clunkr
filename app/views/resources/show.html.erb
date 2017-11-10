@@ -1,0 +1,9 @@
+<h1><%= @resource.full_title %></h1>
+
+<p>Created at: <%= @resource.created_at %></p>
+
+<% if @resource.car_id %>
+<p>  Car: <%=link_to @resource.car.full_title, car_path(@resource.car) %></p>
+<% end %>
+
+<p><%= link_to "Go To Resource", @resource.source_url %></p>
