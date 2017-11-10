@@ -20,7 +20,6 @@ coupe = CarType.create(name: "coupe")
 impala = Car.create(name: "Impala", brand_id: chevy.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG")
 impala.car_types << sedan
 impala.save
-binding.pry
 
 
 porsche911 = Car.create(name: "911", brand_id: porsche.id, year: 1969, photo_url: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Porsche_911E_ca_1969.jpg")
@@ -41,6 +40,7 @@ mike = User.create(username: "Mike", email: "strickergang@live.com", password: "
 #resource_types
 manual = ResourceType.create(name: "manual")
 video = ResourceType.create(name: "video")
+marketplace = ResourceType.create(name: "marketplace")
 
 #resources
 impala_manual = impala.resources.create(title: "1969 Chevy Impala Owners Manual", source_url: "https://www.manualslib.com/manual/928984/Chevrolet-Impala-1969.html?page=2#manual",resource_type_id: manual.id)
@@ -55,7 +55,7 @@ impala_video = impala.resources.create(title: "1969 Chevrolet Impala Custom Coup
 
 mgb_video = mgb.resources.create(title: "MG MGB Differential Maintenance Spacer replacement", source_url: "https://www.youtube.com/watch?v=07c53QjmScw&t=4s", resource_type_id: video.id)
 
-general =
+general = Resource.create(title: "Hemmings.com", source_url: "https://www.hemmings.com/", resource_type_id: marketplace.id)
 
 #user_cars
 

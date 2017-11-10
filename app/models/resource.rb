@@ -11,6 +11,26 @@ class Resource < ApplicationRecord
     self.resource_type
   end
 
+  def subject
+    if car.nil?
+      "General"
+    else
+      car.full_title
+    end
+  end
+
+  def self.general
+    self.where(car_id: nil)
+  end
+
+  def self.for_cars
+    self.where(car_id: !nil)
+  end
+
+  def self.order_by_date
+    self.order(:created_at => :desc)
+  end
+
 
   def full_title
     "#{title} - #{type.name}"

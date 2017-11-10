@@ -1,0 +1,8 @@
+<h1>Resources</h1>
+<!-- eventually make filterable! Like in that one exercise-->
+
+<ul>
+  <% @resources.each do |r| %>
+    <li><%= link_to r.full_title, resource_path(r) %></li>
+  <% end %>
+</ul>
