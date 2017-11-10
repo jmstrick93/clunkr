@@ -33,7 +33,8 @@ mgb.car_types << coupe
 mgb.save
 
 #users
-jim = User.create(username: "Jim", email: "jmstricker93@gmail.com", password: "password")
+john = User.create(username: "John", email: "johnstr123@gmail.com", password: "password")
+binding.pry
 
 mike = User.create(username: "Mike", email: "strickergang@live.com", password: "password")
 
@@ -58,9 +59,9 @@ mgb_video = mgb.resources.create(title: "MG MGB Differential Maintenance Spacer 
 general = Resource.create(title: "Hemmings.com", source_url: "https://www.hemmings.com/", resource_type_id: marketplace.id)
 
 #user_cars
-
-jim_mgb_1 = jim.user_cars.create(car_id: mgb.id, color: "(BRG) British Racing Green")
-jim_mgb_2 = jim.user_cars.create(car_id: mgb.id, color: "Red")
+binding.pry
+john_mgb_1 = john.user_cars.create(car_id: mgb.id, color: "(BRG) British Racing Green")
+john_mgb_2 = john.user_cars.create(car_id: mgb.id, color: "Red")
 
 mike_impala_1 = mike.user_cars.create(car_id: impala.id, color: "Light Blue")
 mike_porsche_1 = mike.user_cars.create(car_id: porsche911.id, color: "(BRG) British Racing Green")
