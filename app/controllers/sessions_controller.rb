@@ -17,12 +17,15 @@ class SessionsController < ApplicationController
         binding.pry
         if @user.errors.keys.include?(:email)
           flash[:error] ||= []
-          flash[:error] << "A user has already registered this email address with a non-Google account.  Please log in to this account without Google."
+          flash[:error] << "A user has already registered this Google email address with a non-Google account.  Please log in to this account without Google."
+          return redirect_to sign_in_path
+        else
+          flash[:error] ||= []
+          flash[:error] ||= "An unexpected error with Google SignIn has occurred. We are working to fix this as soon as we can."
         end
-        return redirect_to sign_in_path
       end
       session[:user_id] = @user.id
-      flash[:notice] = "Successfully Logged In"
+      flash[:notice] = "Successfully logged in as #{@user.username}"
       binding.pry
       redirect_to root_path
     else
@@ -30,7 +33,7 @@ class SessionsController < ApplicationController
         if @user.authenticate(params[:password])
           #result if login credentials are correct
           session[:user_id] = @user.id
-          flash[:notice] = "Successfully Logged In"
+          flash[:notice] = "Successfully logged in as #{@user.username}"
 
           redirect_to root_path
         else
