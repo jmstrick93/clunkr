@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def sign_in_out_button
     if !logged_in?
-      link_to "Sign In", sign_in_path
+      render :partial => 'sessions/sign_in_sign_up_link'
     else
       link_to "Log Out", log_out_path
     end
