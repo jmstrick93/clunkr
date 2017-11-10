@@ -9,4 +9,8 @@ Rails.application.routes.draw do
 
   root 'home#root'
 
+  get 'sign_in', to: 'sessions#new', as: 'sign_in'
+  post 'sign_in', to: 'sessions#create'
+  get 'signup', to: 'sessions#signup', as: 'signup'
+
 end
