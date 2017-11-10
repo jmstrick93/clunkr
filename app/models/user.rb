@@ -14,4 +14,13 @@ class User < ApplicationRecord
     !!self.uid
   end
 
+  def self.find_or_create_from_auth_hash(auth_hash)
+    self.find_or_create_by(uid: auth_hash['uid']) do |u|
+      u.username = auth_hash['info']['name']
+      u.email = auth_hash['info']['email']
+      u.password = SecureRandom.urlsafe_base64(n=6)
+    end
+
+  end
+
 end

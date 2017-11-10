@@ -26,4 +26,27 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def handle_omniauth_errors
+    if !@user.errors.empty?
+      binding.pry
+      if @user.errors.keys.include?(:email)
+        omniauth_email_error
+        return redirect_to sign_in_path
+      else
+        general_omniauth_error
+        return redirect_to sign_in_path
+      end
+    end
+  end
+
+  def omniauth_email_error
+    flash[:error] ||= []
+    flash[:error] << "A user has already registered this Google email address with a non-Google account.  Please log in to this account without using Google."
+  end
+
+  def general_omniauth_error
+    flash[:error] ||= []
+    flash[:error] << "An unexpected error with Google SignIn has occurred. We are working to fix this as soon as we can."
+  end
+
 end

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def root
-    binding.pry
+    # binding.pry
     redirect_to cars_path
   end
 
