@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <div class="navbar">
+        <strong><%= link_to "Clunkr.com", root_path%></strong> |
+        <%= link_to "Cars", cars_path %> |
+        <%= link_to "Brands", brands_path %> |
+        <%= link_to "Resources", resources_path %> |
+        <%= sign_in_out_button %>
+    </div>
     <%= display_flash_messages %>
 
     <%= yield %>

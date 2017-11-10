@@ -7,4 +7,12 @@ module ApplicationHelper
     render :partial => 'layouts/flash_error_format'
   end
 
+  def sign_in_out_button
+    if !logged_in?
+      link_to "Sign In", sign_in_path
+    else
+      link_to "Log Out", log_out_path
+    end
+  end
+
 end

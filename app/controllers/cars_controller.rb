@@ -1,5 +1,7 @@
 class CarsController < ApplicationController
 
+  #I should make a different home page
+
   def index
     @cars = Car.all
   end
