@@ -3,9 +3,9 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
-  validates :password_digest, presence: true
+  #SET UP CUSTOM VALIDATION TO MAKE USERNAME DOES NOT MATCH AN EMAIL
 
   has_many :user_cars
   has_many :cars, through: :user_cars
-  
+
 end

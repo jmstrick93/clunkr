@@ -1,3 +1,3 @@
-<p><%= flash[:error] if flash[:error] %></p>
-<p><%= flash[:alert] if flash[:alert] %></p>
+<h4><%= flash[:alert] if flash[:alert] %></h4>
+<%= formatted_flash_errors if flash[:error] %>
 <p><%= flash[:notice] if flash[:notice] %></p>
