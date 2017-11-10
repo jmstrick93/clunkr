@@ -20,5 +20,9 @@ class Car < ApplicationRecord
   def full_title
     "#{year} #{brand_name} #{name}"
   end
-  
+
+  def self.filter_by_brand(brand_id)
+    self.where(brand_id: brand_id)
+  end
+
 end

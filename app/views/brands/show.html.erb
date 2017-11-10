@@ -1,0 +1,8 @@
+<h1><%= @brand.name %></h1>
+<%= image_tag(@brand.logo, size: "600x400") %>
+
+
+<h2>Cars: </h2>
+<% @cars.filter_by_brand(@brand.id).each do |c| %>
+  <%= listable_car_info(c) %>
+<% end %>
