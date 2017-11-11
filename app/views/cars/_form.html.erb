@@ -21,8 +21,8 @@
   <%= f.text_field :photo_url %>
   <br>
   <br>
-  <%= f.label :car_type_id, "Car Type: " %>
-  <%= f.collection_select :car_type_ids, CarType.all, :id, :name, :include_blank => true %>
+  <%= f.label :car_type_id, "Car Type: (select multiple if this car comes in different styles)" %>
+  <%= f.collection_check_boxes :car_type_ids, CarType.all, :id, :name %>
   <br>
   <!-- new car type field -->
   <%= f.fields_for :car_types, car.car_types.build do |car_type_form| %>

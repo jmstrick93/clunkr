@@ -12,8 +12,7 @@ class Car < ApplicationRecord
   has_many :user_cars
   has_many :users, through: :user_cars
 
-  accepts_nested_attributes_for :brand
-  accepts_nested_attributes_for :car_types
+  # accepts_nested_attributes_for :car_types
 
 
   def brand_name

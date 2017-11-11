@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
   def prep_flash_errors(object)
     #could be used as helper method
     flash[:error] = []
