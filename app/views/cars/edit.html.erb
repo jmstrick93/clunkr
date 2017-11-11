@@ -1,0 +1,4 @@
+<h2>Edit <%= @car.full_title %></h2>
+
+<%= render :partial => 'cars/form', :locals => {car: @car} %>
+<%= link_to "Go Back", car_path(@car) %>
