@@ -12,30 +12,35 @@ class CarsController < ApplicationController
 
   def new
     @car = Car.new
-    @brand = @car.build_brand
-    @car_type = @car.car_types.build
+    @car.build_brand
+    @car.car_types.build
+    # binding.pry
   end
 
   def create
     @car = Car.new(car_params)
-    if !params[:brand].try("values").try("all?") {|v| v.blank?}
-      @brand = @car.build_brand(params[:brand])
-    end
-    if !params[:car_types].try("values").try("all?") {|v| v.blank?}
-      @car_type = @car.car_types.build(params[:car_type])
-    end
+    @car.car_types = @car.car_types.reject {|type| type.id.blank?}
 
-    @car.save
-    raise params.inspect
+    if @car.save
+      redirect_to car_path(@car)
+    else
+      raise params.inspect
+      flash[:alert] = "#{error_count(@car)} errors prevented this car from saving: "
+      prep_flash_errors(@car)
+      redirect_to new_car_path
+    end
+  end
 
-    redirect_to car_path(@car)
+
+  def edit
+    @car = Car.find_by(id: params[:id])
   end
 
   private
 
   def car_params
-    params.require(:car).permit(:brand_id, :name, :year, :photo_url, car_type_ids:[], car_types_attributes: [:name], brand_attributes: [:name, :logo])
-    end
+    params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand => [:name, :logo])
+  end
 
 
 end
