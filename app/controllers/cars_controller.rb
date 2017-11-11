@@ -20,11 +20,12 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
-
+    @car.brand.save
+    @car.brand_id = @car.brand.id
     if @car.save
+      binding.pry
       redirect_to car_path(@car)
     else
-      raise params.inspect
       flash[:alert] = "#{error_count(@car)} errors prevented this car from saving: "
       prep_flash_errors(@car)
       redirect_to new_car_path
@@ -39,7 +40,7 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand => [:name, :logo])
+    params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand_attributes => [:name, :logo])
   end
 
 

@@ -2,7 +2,7 @@
   <%= f.label :brand_id %>
   <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
   <br>
-  <%= f.fields_for :brand, @car.build_brand do |brand_form| %>
+  <%= f.fields_for :brand, car.build_brand do |brand_form| %>
     <%= brand_form.label :name, "OR enter name of New Brand: " %>
     <%= brand_form.text_field :name %>
     <br>
