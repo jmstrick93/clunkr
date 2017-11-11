@@ -1,0 +1,30 @@
+<%= form_for car do |f| %>
+  <%= f.label :brand_id %>
+  <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
+  <br>
+  <%= fields_for brand do |brand_form| %>
+    <%= brand_form.label :name, "OR enter name of New Brand: " %>
+    <%= brand_form.text_field :name %>
+    <br>
+    <%= brand_form.label :logo, "AND link to Logo photo: " %>
+    <%= brand_form.text_field :logo %>
+  <% end %>
+  <br>
+  <br>
+  <%= f.label :name, "Model Name: " %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :year, "Year: " %>
+  <%= f.text_field :year %>
+  <br>
+  <%= f.label :photo_url, "Photo URL: " %>
+  <%= f.text_field :photo_url %>
+  <br>
+  <br>
+  <%= f.label :car_type_id, "Car Type: " %>
+  <%= f.collection_select :car_type_ids, CarType.all, :id, :name, :include_blank => true %>
+
+  <!-- new car type field -->
+  <br><br/>
+  <%= f.submit %>
+<% end %>

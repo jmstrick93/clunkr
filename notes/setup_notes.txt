@@ -1,3 +1,14 @@
+New Car Form:
+fields for:
+brand
+name(without brand)
+year
+photo link
+
+New Resource Form
+
+Resource Form nested car show page
+
 Google OAuth Credentials
 
 Authorized Redirect URLS : http://localhost:3000/auth/google_oauth2/callback
