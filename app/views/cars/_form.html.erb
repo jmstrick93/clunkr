@@ -2,7 +2,7 @@
   <%= f.label :brand_id %>
   <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
   <br>
-  <%= fields_for brand do |brand_form| %>
+  <%= f.fields_for :brand, @car.build_brand do |brand_form| %>
     <%= brand_form.label :name, "OR enter name of New Brand: " %>
     <%= brand_form.text_field :name %>
     <br>
@@ -23,8 +23,14 @@
   <br>
   <%= f.label :car_type_id, "Car Type: " %>
   <%= f.collection_select :car_type_ids, CarType.all, :id, :name, :include_blank => true %>
-
+  <br>
   <!-- new car type field -->
+  <%= f.fields_for :car_types, car.car_types.build do |car_type_form| %>
+    <%= car_type_form.label :name, "OR enter name of New Car Type: " %>
+    <%= car_type_form.text_field :name %>
+    <br>
+  <% end %>
+  <!-- eventually make a "do you own this car" checkbox and color selector to make a user_car -->
   <br><br/>
   <%= f.submit %>
 <% end %>

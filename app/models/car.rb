@@ -12,6 +12,9 @@ class Car < ApplicationRecord
   has_many :user_cars
   has_many :users, through: :user_cars
 
+  accepts_nested_attributes_for :brand
+  accepts_nested_attributes_for :car_types
+
 
   def brand_name
     self.brand.name
@@ -24,5 +27,12 @@ class Car < ApplicationRecord
   def self.filter_by_brand(brand_id)
     self.where(brand_id: brand_id)
   end
+
+  def car_types_attributes=(car_types_attributes)
+  car_types_attributes.values.each do |car_types_attribute|
+    car_type = CarType.find_or_create_by(car_types_attribute)
+    self.car_types << car_type
+  end
+end
 
 end
