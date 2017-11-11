@@ -6,13 +6,11 @@ class SessionsController < ApplicationController
   end
 
   def create_from_omniauth
-    #FAT CONTROLLER! SLIM DOWN LATER
     if auth #if auth is present due to OmniAuth signin attempt
       @user = User.find_or_create_from_auth_hash(auth)
-      handle_omniauth_errors #if there is an error, will stop the below from running and handle flash messages
+      handle_omniauth_errors #if there is an error, will also stop the below from running
       session[:user_id] = @user.id
       flash[:notice] = "Successfully logged in as #{@user.username}"
-      # binding.pry
       redirect_to root_path
     end
 
@@ -29,7 +27,7 @@ class SessionsController < ApplicationController
           redirect_to sign_in_path
         end
       else
-        #result if email address correct.  Password has not been checked
+        #result if email address correct. Password not checked.
         flash[:alert] = "Invalid Email Address"
         redirect_to sign_in_path
       end
@@ -50,5 +48,5 @@ class SessionsController < ApplicationController
   end
 
   #omniauth helpers are in the ApplicationController private methods
-  
+
 end
