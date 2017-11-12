@@ -21,6 +21,7 @@ class ResourcesController < ApplicationController
       @resource.resource_type.save
       @resource.resource_type_id = @resource.resource_type.id
     end
+    
     if @resource.save
       redirect_to resource_path(@resource)
     else

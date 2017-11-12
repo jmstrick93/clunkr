@@ -1,8 +1,11 @@
 class CarsController < ApplicationController
 
+  helper_method :params
+
   #I should make a different home page
 
   def index
+    
     @cars = Car.all
   end
 
