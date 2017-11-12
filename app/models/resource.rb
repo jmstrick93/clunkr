@@ -35,7 +35,11 @@ class Resource < ApplicationRecord
 
 
   def full_title
-    "#{title} - #{type.name}"
+    if !!self.type
+      "#{title} - #{type.name}"
+    else
+      "#{title} - General"
+    end
   end
 
 
