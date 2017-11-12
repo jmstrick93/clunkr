@@ -34,10 +34,10 @@ class Car < ApplicationRecord
   end
 
   def car_types_attributes=(car_types_attributes)
-  car_types_attributes.values.each do |car_types_attribute|
-    car_type = CarType.find_or_create_by(car_types_attribute)
-    self.car_types << car_type
+    car_types_attributes.values.each do |car_types_attribute|
+      car_type = CarType.find_or_create_by(car_types_attribute)
+      self.car_types << car_type if car_type.valid?
+    end
   end
-end
 
 end

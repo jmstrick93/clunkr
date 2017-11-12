@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def handle_omniauth_errors
     if !@user.errors.empty?
-      binding.pry
+      
       if @user.errors.keys.include?(:email)
         omniauth_email_error
         return redirect_to sign_in_path

@@ -2,6 +2,14 @@
 <br>
 <%= image_tag(@car.photo_url, size: "600x400") %>
 <!-- would be cool to have a "added by" section  -->
+
+  <h4>Types: </h4>
+  <ul>
+    <% @car.car_types.each do |t| %>
+      <li><%= t.name%></li>
+    <% end %>
+  </ul>
+
  <h4>Resources: </h4>
  <ul>
    <% @car.resources.each do |r| %>

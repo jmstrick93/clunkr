@@ -34,7 +34,7 @@ mgb.save
 
 #users
 john = User.create(username: "John", email: "johnstr123@gmail.com", password: "password")
-binding.pry
+
 
 mike = User.create(username: "Mike", email: "strickergang@live.com", password: "password")
 
@@ -59,7 +59,7 @@ mgb_video = mgb.resources.create(title: "MG MGB Differential Maintenance Spacer 
 general = Resource.create(title: "Hemmings.com", source_url: "https://www.hemmings.com/", resource_type_id: marketplace.id)
 
 #user_cars
-binding.pry
+
 john_mgb_1 = john.user_cars.create(car_id: mgb.id, color: "(BRG) British Racing Green")
 john_mgb_2 = john.user_cars.create(car_id: mgb.id, color: "Red")
 
