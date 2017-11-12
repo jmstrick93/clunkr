@@ -1,15 +1,19 @@
 <h1>Cars</h1>
-  <% binding.pry %>
+
   <% if !params[:brand_id].blank? %>
     <% @cars = Car.where(:brand_id => params[:brand_id]) %>
+  <% elsif !params[:year].blank? %>
+    <% @cars = Car.where(:year => params[:year]) %>
   <% end %>
-
+  
 <p><%= link_to "Add Car To Database", new_car_path %></p>
 
 <div>
   <h3>Filter cars:</h3>
   <%= form_tag("/cars", method: "get") do %>
     <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
+
+    <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>
