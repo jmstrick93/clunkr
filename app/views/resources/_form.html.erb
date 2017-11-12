@@ -1,0 +1,22 @@
+<%= form_for resource do |f| %>
+  <%= f.label :title, "Title: " %> <br>
+  <%= f.text_field :title %>
+  <br></br>
+  <%= f.label :source_url,  "Source URL: "  %> <br>
+  <%= f.text_field :source_url%>
+  <br></br>
+  <%= f.label :resource_type_id, "Type: " %> <br>
+  <%= f.collection_select :resource_type_id, ResourceType.all, :id, :name %>
+  <br></br>
+
+  <%= f.fields_for resource_type do |type_builder|%>
+    <%= type_builder.label :name, "Name: " %> <br>
+    <%= type_builder.text_field :name %>
+  <% end %>
+
+  <%= f.label :car_id, "Select a car (if applicable)" %> <br>
+  <%= f.collection_select :car_id, Car.all, :id, :title_brand_first, include_blank: true %>
+  <br></br>
+
+  <%= f.submit %>
+<% end %>

@@ -7,6 +7,8 @@ class Resource < ApplicationRecord
   belongs_to :car, optional: true
   belongs_to :resource_type
 
+  accepts_nested_attributes_for :resource_type
+
   def type
     self.resource_type
   end
