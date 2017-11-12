@@ -6,12 +6,13 @@
   <%= f.text_field :source_url%>
   <br></br>
   <%= f.label :resource_type_id, "Type: " %> <br>
-  <%= f.collection_select :resource_type_id, ResourceType.all, :id, :name %>
+  <%= f.collection_select :resource_type_id, ResourceType.all, :id, :name, include_blank: true %>
   <br></br>
 
-  <%= f.fields_for resource_type do |type_builder|%>
-    <%= type_builder.label :name, "Name: " %> <br>
+  <%= f.fields_for :resource_type, ResourceType.new do |type_builder|%>
+    <%= type_builder.label :name, "OR enter name of new type: " %> <br>
     <%= type_builder.text_field :name %>
+    <br></br>
   <% end %>
 
   <%= f.label :car_id, "Select a car (if applicable)" %> <br>

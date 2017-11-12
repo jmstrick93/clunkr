@@ -20,6 +20,7 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if !@car.brand.valid?
+      #done due to issues with blank input overwriting brand_id, thus a newly created brand would know about the car but not vice versa
       @car.brand = Brand.find_by(id: car_params[:brand_id])
     else
       @car.brand.save
