@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+.field_with_errors input  {
+  display: inline;
+  border-style: solid;
+  border-color: red;
+}
+
+.field_with_errors select  {
+  display: inline;
+  border-style: solid;
+  border-color: red;
+}
+
+.field_with_errors label {
+  display: inline;
+  font-style: oblique;
+  color: red;
+  border-style: none;
+}
+
+.field_with_errors {
+  display: inline;
+}

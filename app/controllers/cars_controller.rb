@@ -26,15 +26,15 @@ class CarsController < ApplicationController
       @car.brand_id = @car.brand.id
     end
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
-    binding.pry
+    # binding.pry
     if @car.save
-      binding.pry
+      # binding.pry
       redirect_to car_path(@car)
     else
       flash[:alert] = view_context.pluralize(@car.errors.count,
       'error')+ " prevented this car from saving: "
       prep_flash_errors(@car)
-      redirect_to new_car_path
+      render 'cars/new'
     end
   end
 

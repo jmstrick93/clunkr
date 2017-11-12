@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if !@user.save
       flash[:alert] = "#{@user.errors.count} errors prevented successful signup:"
       prep_flash_errors(@user)
-      redirect_to sign_up_path
+      render :new
     else
       flash[:notice] = "Successfully Signed Up"
       redirect_to root_path
