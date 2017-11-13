@@ -1,7 +1,5 @@
 <%= form_for resource do |f| %>
 
-  <%#= f.hidden_field :car_id %>
-
   <%= f.label :title, "Title: " %> <br>
   <%= f.text_field :title %>
   <br></br>
@@ -18,9 +16,15 @@
     <br></br>
   <% end %>
 
-  <%= f.label :car_id, "Select a car (if applicable)" %> <br>
-  <%= f.collection_select :car_id, Car.all, :id, :title_brand_first, include_blank: true %>
+  <% if params[:car_id] %>
+    <%= f.hidden_field :car_id %>
+  <% else %>
+    <%= f.label :car_id, "Select a car (if applicable)" %> <br>
+    <%= f.collection_select :car_id, Car.all, :id, :title_brand_first, include_blank: true %>
+  <% end %>
+  
   <br></br>
+
 
   <%= f.submit %>
 <% end %>
