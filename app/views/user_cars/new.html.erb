@@ -1,0 +1,19 @@
+<h2>Add Car To Your Collection</h2>
+
+<%= form_for :user_user_car, :url => user_user_cars_path do |f| %>
+  <%= f.label :car_id, "Car:" %> <br>
+  <%= f.collection_select :car_id, Car.all, :id, :full_title %>
+  <br>
+  <br>
+
+  <%= f.label :color, "Color: " %> <br>
+  <%= (f.collection_select :color, UserCar.unique_by_color, :color, :color, include_blank: true) %> <br>
+  <br>
+
+  <%= f.label :color, "OR add a new color:" %> <br>
+  <%= f.text_field :color  %> <br>
+  <br>
+
+  <%= f.submit "Add Car" %>
+
+<% end %>

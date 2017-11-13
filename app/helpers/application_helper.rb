@@ -11,7 +11,7 @@ module ApplicationHelper
     if !logged_in?
       render :partial => 'sessions/sign_in_sign_up_link'
     else
-      link_to "Log Out", log_out_path
+      render :partial => 'sessions/profile_or_logout_link', locals: {current_user: current_user}
     end
   end
 
