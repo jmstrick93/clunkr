@@ -5,8 +5,14 @@ class CarsController < ApplicationController
   #I should make a different home page
 
   def index
-    
-    @cars = Car.all
+    if params[:brand_id] && !params[:brand_id].empty?
+      @cars = Brand.find_by(id: params[:brand_id]).cars
+    elsif
+      params[:year]
+      @cars = Car.where(year: params[:year])
+    else
+      @cars = Car.all
+    end
   end
 
   def show
@@ -17,7 +23,6 @@ class CarsController < ApplicationController
     @car = Car.new
     @car.build_brand
     @car.car_types.build
-    #
   end
 
   def create
@@ -29,10 +34,10 @@ class CarsController < ApplicationController
       @car.brand.save
       @car.brand_id = @car.brand.id
     end
+
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
-    #
+
     if @car.save
-      #
       redirect_to car_path(@car)
     else
       flash[:alert] = view_context.pluralize(@car.errors.count,

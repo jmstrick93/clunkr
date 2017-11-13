@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :users
   resources :resources
-  resources :brands
+  resources :brands do
+    resources :cars
+  end
   resources :cars do
-    resources :resources, only: [:show, :index]
+    resources :resources, only: [:show, :index, :new]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

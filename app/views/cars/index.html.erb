@@ -1,11 +1,11 @@
 <h1>Cars</h1>
 
-  <% if !params[:brand_id].blank? %>
-    <% @cars = Car.where(:brand_id => params[:brand_id]) %>
-  <% elsif !params[:year].blank? %>
-    <% @cars = Car.where(:year => params[:year]) %>
-  <% end %>
-  
+  <%# if !params[:brand_id].blank? %>
+    <%# @cars = Car.where(:brand_id => params[:brand_id]) %>
+  <%# elsif !params[:year].blank? %>
+    <%# @cars = Car.where(:year => params[:year]) %>
+  <%# end %>
+
 <p><%= link_to "Add Car To Database", new_car_path %></p>
 
 <div>
