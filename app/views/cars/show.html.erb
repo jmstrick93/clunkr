@@ -13,7 +13,8 @@
  <h4>Resources: </h4>
  <ul>
    <% @car.resources.each do |r| %>
-     <li><%= link_to r.full_title, car_resource_path(r)%></li>
+   <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
+     <li><%= link_to r.full_title, "/cars/#{params[:id]}/resources/#{r.id}"  %></li>
    <% end %>
    <br>
     <%= add_resource_button %>
