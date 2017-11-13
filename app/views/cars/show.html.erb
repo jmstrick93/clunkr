@@ -15,6 +15,8 @@
    <% @car.resources.each do |r| %>
      <li><%= link_to r.full_title, car_resource_path(r)%></li>
    <% end %>
+   <br>
+    <%= add_resource_button %>
  </ul>
 
  <h4>Owners: <%= @car.users.uniq.count %></h4>

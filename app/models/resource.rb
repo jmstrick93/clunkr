@@ -36,7 +36,6 @@ class Resource < ApplicationRecord
 
   def full_title
     !!self.type ? "#{title} - #{type.name}" : "#{title} - General"
-    end
   end
 
 end

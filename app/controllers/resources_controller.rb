@@ -9,7 +9,11 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    @resource = Resource.new
+    if params[:car_id] && !params[:car_id].empty?
+      @resource = Resource.new(car_id: params[:car_id])
+    else
+      @resource = Resource.new
+    end
     @resource_type = ResourceType.new
   end
 
@@ -21,7 +25,7 @@ class ResourcesController < ApplicationController
       @resource.resource_type.save
       @resource.resource_type_id = @resource.resource_type.id
     end
-    
+
     if @resource.save
       redirect_to resource_path(@resource)
     else
