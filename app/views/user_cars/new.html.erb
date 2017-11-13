@@ -9,14 +9,10 @@
   <br>
   <br>
 
+
+
   <%= f.label :color, "Color: " %> <br>
-  <%= (f.collection_select :color, UserCar.unique_by_color, :color, :color, include_blank: true) %> <br>
-  <br>
-
-  <%= f.label :color, "OR add a new color:" %> <br>
-  <%= f.text_field :color  %> <br>
-
-  <br>
+  <%= f.color_field :color %>
 
   <%= f.submit "Add Car" %>
 

@@ -60,8 +60,8 @@ general = Resource.create(title: "Hemmings.com", source_url: "https://www.hemmin
 
 #user_cars
 
-john_mgb_1 = john.user_cars.create(car_id: mgb.id, color: "(BRG) British Racing Green")
-john_mgb_2 = john.user_cars.create(car_id: mgb.id, color: "Red")
+john_mgb_1 = john.user_cars.create(car_id: mgb.id, color: "#9D9F95")
+john_mgb_2 = john.user_cars.create(car_id: mgb.id, color: "#1C8863")
 
-mike_impala_1 = mike.user_cars.create(car_id: impala.id, color: "Light Blue")
-mike_porsche_1 = mike.user_cars.create(car_id: porsche911.id, color: "(BRG) British Racing Green")
+mike_impala_1 = mike.user_cars.create(car_id: impala.id, color: "#5BE3FF")
+mike_porsche_1 = mike.user_cars.create(car_id: porsche911.id, color: "#1C8863")

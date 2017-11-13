@@ -11,7 +11,7 @@ class UserCar < ApplicationRecord
   end
 
   def self.unique_by_color
-   all.uniq(&:color)
- end
+    all.uniq(&:color)
+  end
 
 end

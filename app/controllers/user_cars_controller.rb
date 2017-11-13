@@ -8,9 +8,13 @@ class UserCarsController < ApplicationController
   end
 
   def create
-    
-    binding.pry
-    redirect_to user_path(@user)
+    @user = User.find_by(id: params[:user_id])
+    @user_car = UserCar.new(user_car_params)
+    if @user_car.save
+      redirect_to user_path(@user)
+    else
+      render :new
+    end
   end
 
   def user_car_params
