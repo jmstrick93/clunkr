@@ -7,4 +7,14 @@ module ResourcesHelper
       link_to "New Resource", new_resource_path
     end
   end
+
+  def new_resource_title
+    if params[:car_id]
+      car_name = Car.find_by(id: params[:car_id]).full_title
+      "New Resource for #{car_name}"
+    else
+      "New Resource"
+    end
+  end
+
 end
