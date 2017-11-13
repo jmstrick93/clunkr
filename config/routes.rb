@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  get '/cars/just_added', to: 'cars#just_added', as: 'cars_just_added'
-  get '/resources/just_added', to: 'resources#just_added', as: 'resources_just_added'
-
   resources :users do
     resources :user_cars, only: [:new, :create]
   end
+
+  get '/cars/just_added', to: 'cars#just_added', as: 'cars_just_added'
+  get '/resources/just_added', to: 'resources#just_added', as: 'resources_just_added'
 
   resources :resources
   resources :brands do

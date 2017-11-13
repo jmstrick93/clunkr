@@ -1,6 +1,9 @@
 <h2>Add Car To Your Collection</h2>
 
-<%= form_for :user_user_car, :url => user_user_cars_path do |f| %>
+<%= form_for @user_car, :url => user_user_cars_path do |f| %>
+
+  <%= f.hidden_field :user_id %>
+
   <%= f.label :car_id, "Car:" %> <br>
   <%= f.collection_select :car_id, Car.all, :id, :full_title %>
   <br>
@@ -12,6 +15,7 @@
 
   <%= f.label :color, "OR add a new color:" %> <br>
   <%= f.text_field :color  %> <br>
+
   <br>
 
   <%= f.submit "Add Car" %>
