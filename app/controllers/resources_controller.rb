@@ -4,6 +4,11 @@ class ResourcesController < ApplicationController
     @resources = Resource.all
   end
 
+  def just_added
+    @resources = Resource.just_added
+    render 'resources/index'
+  end
+
   def show
     @resource = Resource.find_by(id: params[:id])
   end

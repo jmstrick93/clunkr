@@ -15,6 +15,11 @@ class CarsController < ApplicationController
     end
   end
 
+  def just_added
+    @cars = Car.just_added
+    render 'cars/index'
+  end
+
   def show
     @car = Car.find_by(id: params[:id])
   end

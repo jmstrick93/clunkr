@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  get '/cars/just_added', to: 'cars#just_added', as: 'cars_just_added'
+  get '/resources/just_added', to: 'resources#just_added', as: 'resources_just_added'
+
   resources :users
   resources :resources
   resources :brands do
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'home#root'
+
 
   get 'sign_in', to: 'sessions#new', as: 'sign_in'
   post 'sign_in', to: 'sessions#create'
