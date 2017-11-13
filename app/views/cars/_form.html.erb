@@ -1,23 +1,29 @@
 <!-- right now, overlapping error messages (multiple, irrelevant ones showing for same year... maybe solve with nested error fields?) -->
 
 <%=form_for car do |f| %>
-  <%= f.label :brand_id %>
 
+  <% if params[:brand_id] && !params[:brand_id].blank? %>
+    <%= f.hidden_field :brand_id %>
+  <% else %>
+    <%= f.label :brand_id %>
     <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
-  <br>
-  <%= f.fields_for :brand, Brand.new do |brand_form| %>
-      <br>
-      <%= brand_form.label :name, "OR new brand name: " %> <br>
-      <%= brand_form.text_field :name %>
-      <br>
     <br>
-    <%= brand_form.label :logo, "AND link to Logo photo: " %>
+    <%= f.fields_for :brand, Brand.new do |brand_form| %>
+        <br>
+        <%= brand_form.label :name, "OR new brand name: " %> <br>
+        <%= brand_form.text_field :name %>
+        <br>
+      <br>
+      <%= brand_form.label :logo, "AND link to Logo photo: " %>
+      <br>
+      <%= brand_form.text_field :logo %>
+      <br>
+    <% end %>
     <br>
-    <%= brand_form.text_field :logo %>
     <br>
   <% end %>
-  <br>
-  <br>
+
+
   <%= f.label :name, "Model Name: " %> <br>
   <%= f.text_field :name %>
   <br>

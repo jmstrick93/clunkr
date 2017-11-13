@@ -3,6 +3,7 @@
 
 
 <h2>Cars: </h2>
+<%= link_to "Add A Car", new_brand_car_path(@brand) %>
 <% @cars.filter_by_brand(@brand.id).each do |c| %>
   <%= listable_car_info(c) %>
 <% end %>

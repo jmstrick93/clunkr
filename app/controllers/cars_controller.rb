@@ -20,9 +20,14 @@ class CarsController < ApplicationController
   end
 
   def new
-    @car = Car.new
-    @car.build_brand
-    @car.car_types.build
+    if params[:brand_id] && !params[:brand_id].empty?
+      @car = Car.new(brand_id: params[:brand_id])
+      @car.car_types.build
+    else
+      @car = Car.new
+      @car.build_brand
+      @car.car_types.build
+    end
   end
 
   def create
