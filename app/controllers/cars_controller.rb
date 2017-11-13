@@ -45,6 +45,7 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to car_path(@car)
     else
+      #when there are nested form errors, the form changes to non-nested.  Is there a way to fix this?
       flash[:alert] = view_context.pluralize(@car.errors.count,
       'error')+ " prevented this car from saving: "
       prep_flash_errors(@car)
