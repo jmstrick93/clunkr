@@ -73,7 +73,7 @@ class CarsController < ApplicationController
     @car.assign_attributes(car_params)
     if !@car.brand.valid?
       #done due to issues with blank input overwriting brand_id, thus a newly created brand would know about the car but not vice versa
-      
+
       if !!car_params[:brand_id] && !car_params[:brand_id].empty?
         @car.brand = Brand.find_by(id: car_params[:brand_id])
       end
@@ -93,6 +93,13 @@ class CarsController < ApplicationController
       prep_flash_errors(@car)
       render 'cars/edit'
     end
+  end
+
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+    flash[:notice] = "#{@car.full_title} successfully deleted"
+    redirect_to cars_path
   end
 
   private

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    #add this to userscontroller when authorization system is set up
+  end
+
   #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
   def prep_flash_errors(object)
     #could be used as helper method

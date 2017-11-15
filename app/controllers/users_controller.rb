@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: :show
-  
+
   def new
     @user = User.new
   end
@@ -20,6 +20,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id]).destroy
+    @user.destroy
+    redirect_to users_path
   end
 
   #create an admin-only index page
