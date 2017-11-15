@@ -1,7 +1,7 @@
 <h1><%= @user.username %></h1>
 
 <h3>Cars: <%= @user.user_cars.count %></h3>
-  <%= link_to "Add A Car", new_user_user_car_path(@user) %>
+  <%= add_a_car_button(@user) %>
   <% @user.user_cars.each do |uc| %>
       <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
   <% end %>

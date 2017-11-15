@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, unless: :login_social?
   validates :username, presence: true
   validates :email, uniqueness: true, presence: true
+  validates_email_format_of :email, :message => 'email must be in valid format'
   #SET UP CUSTOM VALIDATION TO MAKE USERNAME DOES NOT MATCH AN EMAIL
 
   has_many :user_cars, dependent: :destroy

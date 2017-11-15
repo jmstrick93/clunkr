@@ -61,7 +61,7 @@ class ResourcesController < ApplicationController
     end
     if @resource.save
       flash.clear
-      flash[:notice] = "#{@car.full_title} successfully updated"
+      flash[:notice] = "#{@resource.full_title} successfully updated"
       redirect_to resource_path(@resource)
     else
       flash[:alert] = view_context.pluralize(@resource.errors.count,

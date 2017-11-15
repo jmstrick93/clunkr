@@ -39,6 +39,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'dotenv-rails'
 
+gem 'validates_email_format_of'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
