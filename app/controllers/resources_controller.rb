@@ -32,6 +32,9 @@ class ResourcesController < ApplicationController
     end
 
     if @resource.save
+      flash.clear
+      flash[:notice] = []
+      flash[:notice] << "#{@resource.full_title} successfully created"
       redirect_to resource_path(@resource)
     else
       flash[:alert] = view_context.pluralize(@resource.errors.count,
@@ -55,6 +58,9 @@ class ResourcesController < ApplicationController
       @resource.resource_type_id = @resource.resource_type.id
     end
     if @resource.save
+      flash.clear
+      flash[:notice] = []
+      flash[:notice] << "#{@car.full_title} successfully updated"
       redirect_to resource_path(@resource)
     else
       flash[:alert] = view_context.pluralize(@resource.errors.count,

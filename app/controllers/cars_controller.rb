@@ -48,6 +48,9 @@ class CarsController < ApplicationController
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
 
     if @car.save
+      flash.clear
+      flash[:notice] = []
+      flash[:notice] << "#{@car.full_title} successfully created"
       redirect_to car_path(@car)
     else
       #when there are nested form errors, the form changes to non-nested.  Is there a way to fix this?
