@@ -6,13 +6,13 @@ class Car < ApplicationRecord
   validate :car_photo_url_is_valid
   validates_associated :brand
 
-  has_many :car_type_cars
+  has_many :car_type_cars, dependent: :destroy
   has_many :car_types, through: :car_type_cars
 
   belongs_to :brand
 
   has_many :resources
-  has_many :user_cars
+  has_many :user_cars, dependent: :destroy
   has_many :users, through: :user_cars
 
   accepts_nested_attributes_for :brand

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   #SET UP CUSTOM VALIDATION TO MAKE USERNAME DOES NOT MATCH AN EMAIL
 
-  has_many :user_cars
+  has_many :user_cars, dependent: :destroy
   has_many :cars, through: :user_cars
 
 
