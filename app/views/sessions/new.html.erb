@@ -1,10 +1,12 @@
 <h1>Sign In</h1>
 
 <%= form_tag '/sign_in' do %>
-  <div class "field">Email: <%= text_field_tag :email  %></div>
-  <div class = "field">Password <%= password_field_tag :password %></div>
+  <div class "field">Email: <br> <%= text_field_tag :email  %></div>
+  <br>
+  <div class = "field">Password: <br> <%= password_field_tag :password %></div>
   <br>
   <%= button_tag "Sign In" %>
 <% end %>
-
-<%= link_to "Sign In With Google", '/auth/google_oauth2' %>
+<br>
+<%= link_to "Sign In With Google", '/auth/google_oauth2' %> <br>
+<%= link_to "No account? Sign up here!", sign_up_path %>
