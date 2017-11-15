@@ -11,7 +11,7 @@ class Car < ApplicationRecord
 
   belongs_to :brand
 
-  has_many :resources
+  has_many :resources, dependent: :destroy
   has_many :user_cars, dependent: :destroy
   has_many :users, through: :user_cars
 
