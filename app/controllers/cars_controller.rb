@@ -1,5 +1,8 @@
 class CarsController < ApplicationController
 
+  before_action :require_login
+  skip_before_action :require_login, only: [:index, :show]
+
   helper_method :params
 
   #I should make a different home page
@@ -49,8 +52,7 @@ class CarsController < ApplicationController
 
     if @car.save
       flash.clear
-      flash[:notice] = []
-      flash[:notice] << "#{@car.full_title} successfully created"
+      flash[:notice] = "#{@car.full_title} successfully created"
       redirect_to car_path(@car)
     else
       #when there are nested form errors, the form changes to non-nested.  Is there a way to fix this?
@@ -83,8 +85,7 @@ class CarsController < ApplicationController
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
     if @car.save
       flash.clear
-      flash[:notice] = []
-      flash[:notice] << "#{@car.full_title} successfully updated"
+      flash[:notice] = "#{@car.full_title} successfully updated"
       redirect_to car_path(@car)
     else
       flash[:alert] = view_context.pluralize(@car.errors.count,
@@ -99,4 +100,12 @@ class CarsController < ApplicationController
   def car_params
     params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand_attributes => [:name, :logo])
   end
+
+  def require_login
+    unless logged_in?
+      flash[:alert] = "You must be logged in to access this section"
+      redirect_to sign_in_path # halts request cycle
+    end
+  end
+
 end
