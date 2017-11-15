@@ -3,5 +3,4 @@ module BrandsHelper
     render partial: 'brands/brand_info_div', locals: {brand: brand}
   end
 
-
 end

@@ -11,4 +11,11 @@ class BrandsController < ApplicationController
     @cars = Car.all
   end
 
+  def destroy
+    @brand = Brand.find(params[:id])
+    @brand.destroy
+    flash[:alert] = "#{@brand.name} successfully deleted"
+    redirect_to brands_path
+  end
+
 end

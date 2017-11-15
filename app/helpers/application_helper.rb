@@ -21,10 +21,14 @@ module ApplicationHelper
 
   def delete_button(item)
     if !!current_user && current_user.admin
-      if item.class != User
+
+      if item.class != User && item.class != Brand
         link_to "Delete #{item.class}", item, method: :delete, data: { confirm: "Are you sure you want to delete #{item.full_title}?" }
-      else
-        link_to "Delete", item, method: :delete, data: { confirm: "Are you sure you want to delete #{item.username}?" }
+      elsif item.class == User
+        link_to "Delete #{item.class}", item, method: :delete, data: { confirm: "Are you sure you want to delete #{item.username}?" }
+      elsif item.class == Brand
+
+        link_to "Delete #{item.class}", item, method: :delete, data: { confirm: "WARNING: ALL ITEMS belonging to this brand and its cars will be deleted as well. This could lead to a large number of items being permanently deleted. ARE YOU SURE you want to delete #{item.name}?" }
       end
     end
   end
