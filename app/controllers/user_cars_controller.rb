@@ -1,5 +1,7 @@
 class UserCarsController < ApplicationController
 
+  before_action :require_login
+
   def new
     @user = User.find_by(id: params[:user_id])
     @user_car = UserCar.new(user_id: params[:user_id])

@@ -1,5 +1,8 @@
 class ResourcesController < ApplicationController
 
+  before_action :require_login
+  skip_before_action :require_login, only: [:index, :just_added, :show]
+
   def index
     @resources = Resource.all
   end
