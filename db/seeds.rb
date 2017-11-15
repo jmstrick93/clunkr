@@ -35,6 +35,8 @@ mgb.save
 #users
 john = User.create(username: "John", email: "johnstr123@gmail.com", password: "password")
 
+admin = User.create(username: "Admin", email: "admin@clunkr.com", password: "password", admin: true)
+
 
 mike = User.create(username: "Mike", email: "strickergang@live.com", password: "password")
 
