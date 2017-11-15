@@ -5,7 +5,7 @@ class UserCarsController < ApplicationController
   def new
     @user = User.find_by(id: params[:user_id])
     @user_car = UserCar.new(user_id: params[:user_id])
-    binding.pry
+
     # render 'new'
   end
 
