@@ -4,6 +4,7 @@ class Car < ApplicationRecord
   validates :brand_id, presence: true
   validates :car_types, presence: true
   validate :car_photo_url_is_valid
+  validates_associated :brand
 
   has_many :car_type_cars
   has_many :car_types, through: :car_type_cars
