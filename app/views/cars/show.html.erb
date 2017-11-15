@@ -4,6 +4,8 @@
 <%= image_tag(@car.photo_url, size: "600x400") %>
 <!-- would be cool to have a "added by" section  -->
 
+  <p><strong>Brand: </strong> <%= link_to @car.brand_name, brand_path(@car.brand) %></p>
+
   <h4>Types: </h4>
   <ul>
     <% @car.car_types.each do |t| %>
