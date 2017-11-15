@@ -12,7 +12,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    #add this to userscontroller when authorization system is set up
+    unless !!current_user.admin
+      flash[:alert] = "You must have admin permissions to do that"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
