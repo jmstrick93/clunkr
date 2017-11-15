@@ -19,5 +19,15 @@ module ApplicationHelper
     end
   end
 
+  def delete_button(item)
+    if !!current_user.admin
+      if item.class != User
+        link_to "Delete #{item.class}", item, method: :delete, data: { confirm: "Are you sure you want to delete #{item.full_title}?" }
+      else
+        link_to "Delete", item, method: :delete, data: { confirm: "Are you sure you want to delete #{item.username}?" }
+      end
+    end
+  end
+
 
 end
