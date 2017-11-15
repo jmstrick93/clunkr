@@ -3,6 +3,7 @@ class Car < ApplicationRecord
   validates :year, presence: true, numericality: true, length: {is: 4}
   validates :brand_id, presence: true
   validates :car_types, presence: true
+  validate :car_photo_url_is_valid
 
   has_many :car_type_cars
   has_many :car_types, through: :car_type_cars
@@ -39,5 +40,15 @@ class Car < ApplicationRecord
       self.car_types << car_type if car_type.valid?
     end
   end
+
+  private
+
+  require 'uri'
+
+def car_photo_url_is_valid(url)
+  unless URI.parse(url) && !url.host.nil?
+    errors.add(:photo_url, "must be valid url")
+  end
+end
 
 end
