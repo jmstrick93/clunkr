@@ -43,12 +43,15 @@ class Car < ApplicationRecord
 
   private
 
-  require 'uri'
-
-def car_photo_url_is_valid(url)
-  unless URI.parse(url) && !url.host.nil?
-    errors.add(:photo_url, "must be valid url")
+  def car_photo_url_is_valid
+    if self.photo_url =~ /\A#{URI::regexp}[.](jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)\z/
+      uri = URI.parse(self.photo_url)
+      unless !uri.host.nil?
+        errors.add(:photo_url, "must be valid url to jpeg/jpg, gif, or png file.")
+      end
+    else
+      errors.add(:photo_url, "must be valid url to jpeg/jpg, gif, or png file.")
+    end
   end
-end
 
 end

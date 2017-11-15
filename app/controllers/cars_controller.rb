@@ -90,6 +90,4 @@ class CarsController < ApplicationController
   def car_params
     params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand_attributes => [:name, :logo])
   end
-
-
 end
