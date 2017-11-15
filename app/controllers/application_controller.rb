@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
   def prep_flash_errors(object)
     #could be used as helper method
-    flash[:error] = []
+    flash[:error] ||= []
     object.errors.full_messages.each do |error|
       flash[:error] << error
     end
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def handle_omniauth_errors
     if !@user.errors.empty?
-      
+
       if @user.errors.keys.include?(:email)
         omniauth_email_error
         return redirect_to sign_in_path

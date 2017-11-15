@@ -68,7 +68,10 @@ class CarsController < ApplicationController
     @car.assign_attributes(car_params)
     if !@car.brand.valid?
       #done due to issues with blank input overwriting brand_id, thus a newly created brand would know about the car but not vice versa
-      @car.brand = Brand.find_by(id: car_params[:brand_id])
+      binding.pry
+      if !!car_params[:brand_id] && !car_params[:brand_id].empty?
+        @car.brand = Brand.find_by(id: car_params[:brand_id])
+      end
     else
       @car.brand.save
       @car.brand_id = @car.brand.id
@@ -76,6 +79,9 @@ class CarsController < ApplicationController
     #weeds out any invalid car types
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
     if @car.save
+      flash.clear
+      flash[:notice] = []
+      flash[:notice] << "#{@car.full_title} successfully updated"
       redirect_to car_path(@car)
     else
       flash[:alert] = view_context.pluralize(@car.errors.count,
