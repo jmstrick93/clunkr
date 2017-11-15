@@ -101,11 +101,4 @@ class CarsController < ApplicationController
     params.require(:car).permit(:brand_id, :name, :year, :photo_url, :car_type_ids => [], car_types_attributes: [:name], :brand_attributes => [:name, :logo])
   end
 
-  def require_login
-    unless logged_in?
-      flash[:alert] = "You must be logged in to access this section"
-      redirect_to sign_in_path # halts request cycle
-    end
-  end
-
 end

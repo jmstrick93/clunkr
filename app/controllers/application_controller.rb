@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_login
+    unless logged_in?
+      flash[:alert] = "You must be logged in to access this section"
+      redirect_to sign_in_path # halts request cycle
+    end
+  end
+
   #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
   def prep_flash_errors(object)
     #could be used as helper method
