@@ -5,10 +5,12 @@ class ApplicationRecord < ActiveRecord::Base
     self.order(created_at: :desc).limit(3)
   end
 
-  def success_message(object, action_name)
+  def success_message(action_name, flash)
     flash.clear
-    action_name.pop if action_name[-1] == "e"
-    flash[:notice] = "#{object.full_title} successfully #{action}ed"
+    action_name[0...-1] if action_name[-1] == "e"
+    flash[:notice] = "#{self.full_title} successfully #{action_name}ed"
   end
+
+  
 
 end

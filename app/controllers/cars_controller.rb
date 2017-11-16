@@ -51,8 +51,7 @@ class CarsController < ApplicationController
     @car.remove_car_type_ids
 
     if @car.save
-      flash.clear
-      flash[:notice] = "#{@car.full_title} successfully created"
+      @car.success_message("create", flash)
       redirect_to car_path(@car)
     else
       #when there are nested form errors, the form changes to non-nested.  Is there a way to fix this?
@@ -84,8 +83,7 @@ class CarsController < ApplicationController
     #weeds out any invalid car types
     @car.car_types = @car.car_types.reject {|type| type.id.blank?}
     if @car.save
-      flash.clear
-      flash[:notice] = "#{@car.full_title} successfully updated"
+      @car.success_message("update", flash)
       redirect_to car_path(@car)
     else
       flash[:alert] = view_context.pluralize(@car.errors.count,
@@ -98,7 +96,7 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    flash[:notice] = "#{@car.full_title} successfully deleted"
+    @car.success_message("destroy", flash)
     redirect_to cars_path
   end
 
