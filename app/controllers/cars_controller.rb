@@ -28,7 +28,7 @@ class CarsController < ApplicationController
   end
 
   def new
-    if params[:brand_id] && !params[:brand_id].empty?
+    if field_has_content(params[:brand_id])
       @car = Car.new(brand_id: params[:brand_id])
       @car.car_types.build
     else
@@ -47,17 +47,13 @@ class CarsController < ApplicationController
       @car.brand.save
       @car.brand_id = @car.brand.id
     end
-
-    @car.remove_car_type_ids
-
+    #weeds out any invalid car types
+    @car.remove_blank_car_type_ids
     if @car.save
       success_message(@car, "create")
       redirect_to car_path(@car)
     else
-      #when there are nested form errors, the form changes to non-nested.  Is there a way to fix this?
-      flash[:alert] = view_context.pluralize(@car.errors.count,
-      'error')+ " prevented this car from saving: "
-      prep_flash_errors(@car)
+      flash_errors_and_heading(@car)
       render 'cars/new'
     end
   end
@@ -72,8 +68,7 @@ class CarsController < ApplicationController
     @car.assign_attributes(car_params)
     if !@car.brand.valid?
       #done due to issues with blank input overwriting brand_id, thus a newly created brand would know about the car but not vice versa
-
-      if !!car_params[:brand_id] && !car_params[:brand_id].empty?
+      if field_has_content(car_params[:brand_id])
         @car.brand = Brand.find_by(id: car_params[:brand_id])
       end
     else
@@ -81,14 +76,12 @@ class CarsController < ApplicationController
       @car.brand_id = @car.brand.id
     end
     #weeds out any invalid car types
-    @car.car_types = @car.car_types.reject {|type| type.id.blank?}
+    @car.remove_blank_car_type_ids
     if @car.save
       success_message(@car, "update")
       redirect_to car_path(@car)
     else
-      flash[:alert] = view_context.pluralize(@car.errors.count,
-      'error')+ " prevented this car from saving: "
-      prep_flash_errors(@car)
+      flash_errors_and_heading(@car)
       render 'cars/edit'
     end
   end
@@ -96,7 +89,7 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    @car.success_message("destroy", flash)
+    success_message(@car, "destroy")
     redirect_to cars_path
   end
 

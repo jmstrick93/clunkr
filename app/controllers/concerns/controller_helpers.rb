@@ -14,6 +14,11 @@ module ControllerHelpers
     end
   end
 
+  def flash_errors_and_heading(object)
+    flash[:alert] = view_context.pluralize(object.errors.count, 'error')+ " prevented this #{object.class} from saving: "
+    prep_flash_errors(object)
+  end
+
   #eventually readjust this to "yield" the action that failed to happen.  VERSATILE!
   def prep_flash_errors(object)
     #could be used as helper method
@@ -63,6 +68,10 @@ module ControllerHelpers
     flash.clear
     action_name[0...-1] if action_name[-1] == "e"
     flash[:notice] = "#{object.full_title} successfully #{action_name}ed"
+  end
+
+  def field_has_content(field)
+    !!field && !field.empty?
   end
 
 end

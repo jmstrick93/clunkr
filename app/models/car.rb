@@ -42,7 +42,7 @@ class Car < ApplicationRecord
     end
   end
 
-  def remove_car_type_ids
+  def remove_blank_car_type_ids
     self.car_types = self.car_types.reject {|type| type.id.blank?}
   end
 
