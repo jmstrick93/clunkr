@@ -8,7 +8,15 @@ class SessionsController < ApplicationController
   def create_from_omniauth
     if auth #if auth is present due to OmniAuth signin attempt
       @user = User.find_or_create_from_auth_hash(auth)
-      handle_omniauth_errors #if there is an error, will also stop the below from running
+      if !@user.errors.empty?
+        if @user.errors.keys.include?(:email)
+          omniauth_email_error
+          return redirect_to sign_in_path
+        else
+          general_omniauth_error
+          return redirect_to sign_in_path
+        end
+      end #if there is an error, will also stop the below from running
       session[:user_id] = @user.id
       flash[:notice] = "Successfully logged in as #{@user.username}"
       redirect_to root_path
