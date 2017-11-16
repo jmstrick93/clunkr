@@ -8,7 +8,7 @@ class CarsController < ApplicationController
   #I should make a different home page
 
   def index
-    if params[:brand_id] && !params[:brand_id].empty?
+    if field_has_content(params[:brand_id])
       @cars = Brand.find_by(id: params[:brand_id]).cars
     elsif
       params[:year]

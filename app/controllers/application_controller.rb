@@ -5,5 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   include ControllerHelpers
+  include ErrorHelpers
+  include AuthorizationHelpers
 
 end
