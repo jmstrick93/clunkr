@@ -14,4 +14,10 @@ class UserCar < ApplicationRecord
     all.uniq(&:color)
   end
 
+  def full_title
+    car = Car.find(self.car_id)
+    user = User.find(self.user_id)
+    "#{user.full_title}\'s #{car.full_title}"
+  end
+
 end

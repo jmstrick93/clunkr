@@ -48,7 +48,7 @@ class CarsController < ApplicationController
       @car.brand_id = @car.brand.id
     end
 
-    @car.car_types = @car.car_types.reject {|type| type.id.blank?}
+    @car.remove_car_type_ids
 
     if @car.save
       flash.clear

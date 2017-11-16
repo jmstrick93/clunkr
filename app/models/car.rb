@@ -42,6 +42,10 @@ class Car < ApplicationRecord
     end
   end
 
+  def remove_car_type_ids
+    self.car_types = self.car_types.reject {|type| type.id.blank?}
+  end
+
   private
 
   def car_photo_url_is_valid

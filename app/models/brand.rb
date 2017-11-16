@@ -8,6 +8,9 @@ class Brand < ApplicationRecord
 
   # accepts_nested_attributes_for :cars
 
+  def full_title
+    self.name
+  end
 
   private
 

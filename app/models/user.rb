@@ -23,4 +23,8 @@ class User < ApplicationRecord
     end
   end
 
+  def full_title
+    self.username
+  end
+
 end
