@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  include ControllerHelpers
+  include LogicHelpers
   include ErrorHelpers
   include AuthorizationHelpers
 

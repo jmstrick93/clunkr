@@ -13,8 +13,10 @@ class UserCarsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @user_car = UserCar.new(user_car_params)
     if @user_car.save
+      success_message(@user_car, "create")
       redirect_to user_path(@user)
     else
+      flash_errors_and_heading(@user_car)
       render :new
     end
   end

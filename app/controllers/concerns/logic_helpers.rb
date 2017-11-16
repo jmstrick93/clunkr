@@ -1,8 +1,4 @@
-module ControllerHelpers
-  
-  def logged_in?
-    !!current_user
-  end
+module LogicHelpers
 
   def field_has_content(field)
     !!field && !field.empty?

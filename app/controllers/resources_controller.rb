@@ -17,11 +17,7 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    if params[:car_id] && !params[:car_id].empty?
-      @resource = Resource.new(car_id: params[:car_id])
-    else
-      @resource = Resource.new
-    end
+    field_has_content(params[:car_id]) ? @resource = Resource.new(car_id: params[:car_id]) : @resource = Resource.new
     @resource_type = ResourceType.new
   end
 
@@ -35,13 +31,10 @@ class ResourcesController < ApplicationController
     end
 
     if @resource.save
-      flash.clear
-      flash[:notice] = "#{@resource.full_title} successfully created"
+      success_message(@resource, "create")
       redirect_to resource_path(@resource)
     else
-      flash[:alert] = view_context.pluralize(@resource.errors.count,
-      'error')+ " prevented this resource from saving: "
-      prep_flash_errors(@resource)
+      flash_errors_and_heading(@resource)
       render 'resources/new'
     end
   end
@@ -60,13 +53,10 @@ class ResourcesController < ApplicationController
       @resource.resource_type_id = @resource.resource_type.id
     end
     if @resource.save
-      flash.clear
-      flash[:notice] = "#{@resource.full_title} successfully updated"
+      success_message(@resource, "update")
       redirect_to resource_path(@resource)
     else
-      flash[:alert] = view_context.pluralize(@resource.errors.count,
-      'error')+ " prevented this resource from saving: "
-      prep_flash_errors(@resource)
+      flash_errors_and_heading(@resource)
       render 'resources/edit'
     end
   end
