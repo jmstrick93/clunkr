@@ -2,7 +2,7 @@
 
 ## Installation
 
-You can install this program in its current form by cloning it by entering git clone git@github.com:jmstrick93/clunkr.git into the console.
+You can install this program in its current form by cloning it by entering ```git clone git@github.com:jmstrick93/clunkr.git``` into the console.
 
 ## Usage
 
