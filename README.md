@@ -18,7 +18,7 @@ You can install this program in its current form by cloning it by entering ```gi
 
 ## Development
 
-After forking and cloning the repo, run bundle install Then, run rake db:migrate RAILS_ENV. You can also run ```rails console``` in the terminal to experiment with the database and its models.
+After forking and cloning the repo, run ```bundle install```. Then, run rake db:migrate RAILS_ENV. You can also run ```rails console``` in the terminal to experiment with the database and its models.
 
 You may create new migration files by using standard rails generators such as ```rails g migration```.  You can look at existing rails routes by running ```rake routes```.  You can also see a complete list of Rake commands by executing rake -T in the terminal.  
 
