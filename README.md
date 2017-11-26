@@ -1,5 +1,12 @@
 # README
 
+##About
+Clunkr is a resource-sharing platform for classic car owners.  Users can browse informational, maintenance, and recreational resources by car make, model, and year.
+
+It is a dynamic site that runs on user contributions.  Users can add or modify cars & resources, build their own profile that lists what kinds of cars they own, and see which other users own the same car.
+
+New users can sign up from scratch or using their Google account via OmniAuth.
+
 ## Installation
 
 You can install this program in its current form by cloning it by entering ```git clone git@github.com:jmstrick93/clunkr.git``` into the console.
@@ -32,4 +39,4 @@ Contributions adding additional functionality are encouraged.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Clunkr is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
