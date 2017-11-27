@@ -6,7 +6,6 @@ class Brand < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :car_types, through: :cars
 
-  # accepts_nested_attributes_for :cars
 
   def full_title
     self.name
