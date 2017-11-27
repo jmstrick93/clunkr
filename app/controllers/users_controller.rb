@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       prep_flash_errors(@user)
       render :new
     else
+      session[:user_id] = @user.id
       flash[:notice] = "Successfully Signed Up"
       redirect_to root_path
     end
