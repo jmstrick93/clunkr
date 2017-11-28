@@ -1,3 +1,4 @@
 <% @users.each do |u| %>
+  <%= image_tag u.avatar.url(:thumb) %>
   <%= link_to u.username, user_path(u) %> - <%= u.email %> <br>
 <% end %>

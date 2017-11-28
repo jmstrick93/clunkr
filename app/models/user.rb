@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :user_cars, dependent: :destroy
   has_many :cars, through: :user_cars
 
+  has_attached_file :avatar, styles: { thumb: "100x100>" }, default_url: ':style/default.jpg'
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def login_social?
     !!self.uid
