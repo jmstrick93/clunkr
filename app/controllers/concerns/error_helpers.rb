@@ -21,7 +21,8 @@ module ErrorHelpers
 
   def success_message(object, action_name)
     flash.clear
-    action_name[0...-1] if action_name[-1] == "e"
+    action_name = action_name[0...-1] if action_name[-1] == "e"
+    binding.pry
     flash[:notice] = "#{object.full_title} successfully #{action_name}ed"
   end
 
