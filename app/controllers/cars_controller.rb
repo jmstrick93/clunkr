@@ -25,6 +25,11 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find_by(id: params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @car.to_json}
+    end
+
   end
 
   def new
