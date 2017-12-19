@@ -41,6 +41,8 @@ gem 'dotenv-rails'
 
 gem 'validates_email_format_of'
 
+gem 'jquery-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
