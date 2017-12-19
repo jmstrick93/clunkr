@@ -16,6 +16,10 @@ class CarsController < ApplicationController
     else
       @cars = Car.all
     end
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @cars.to_json}
+    end
   end
 
   def just_added
