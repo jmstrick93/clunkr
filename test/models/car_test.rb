@@ -22,9 +22,9 @@ class CarTest < ActiveSupport::TestCase
 
   #associations
 
-  test "belongs to brand" do
-    assert_instance_of Brand, @car.brand, "#{@car.brand} is not an instance of Brand"
-  end
+  # test "belongs to brand" do
+  #   assert_instance_of Brand, @car.brand, "#{@car.brand} is not an instance of Brand"
+  # end
 
   test "has many car types" do
     assert_equal 2, @car.car_types.count
@@ -35,6 +35,10 @@ class CarTest < ActiveSupport::TestCase
 
   test "has many users" do
 
+  end
+
+  test "#full_title  consists of car's year, brand name, and model name" do
+    assert_equal("1990 Honda Accord", @car.full_title)
   end
 
 end

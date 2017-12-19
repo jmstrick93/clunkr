@@ -1,7 +1,7 @@
 module ErrorHelpers
 
   def flash_errors_and_heading(object)
-    flash[:alert] = view_context.pluralize(object.errors.count, 'error')+ " prevented this #{object.class} from saving: "
+    flash[:alert] = view_context.pluralize(object.errors.count, 'error') + " prevented this #{object.class} from saving: "
     prep_flash_errors(object)
   end
 
@@ -22,7 +22,6 @@ module ErrorHelpers
   def success_message(object, action_name)
     flash.clear
     action_name = action_name[0...-1] if action_name[-1] == "e"
-    binding.pry
     flash[:notice] = "#{object.full_title} successfully #{action_name}ed"
   end
 

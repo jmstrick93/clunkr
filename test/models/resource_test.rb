@@ -2,6 +2,11 @@ require 'test_helper'
 
 class ResourceTest < ActiveSupport::TestCase
 
+  def setup
+    @resource1 = resources(:one)
+    @resource2 = resources(:coolcars)
+  end
+
   test "should not save without title" do
     title = "Title"
     type = ResourceType.find_by(name: "Manual")
@@ -36,5 +41,12 @@ class ResourceTest < ActiveSupport::TestCase
     assert resource.save, "does not save without car_id"
   end
 
+  test "if resource has a type, #full_title  consists of resource's name and type" do
+    assert_equal("MGB Maintenance - Manual", @resource1.full_title)
+  end
+
+  test "if resource does not have type #full title consists of a resource's name followed by '- General'" do
+    assert_equal("Cool Cars For Sale - General", @resource2.full_title)
+  end
 
 end
