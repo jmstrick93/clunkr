@@ -18,7 +18,7 @@ class CarsController < ApplicationController
     end
     respond_to do |format|
       format.html {render :index}
-      format.json {render json: @cars.to_json}
+      format.json {render json: @cars}
     end
   end
 
@@ -31,7 +31,7 @@ class CarsController < ApplicationController
     @car = Car.find_by(id: params[:id])
     respond_to do |format|
       format.html {render :show}
-      format.json {render json: @car.to_json}
+      format.json {render json: @car}
     end
 
   end
