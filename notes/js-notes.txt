@@ -7,13 +7,14 @@ Specs:
 - [ ] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
     -Car show resource will be rendered using jQuery
     - how to approach??
-      1) create an internal API; review sections:
-        a)
+      1) create an internal API; review sections -- DONE
       2) create the AJAX that interact with that internal api and render info.
 
 
 - [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
      - car index resource will be rendered using jQuery.
+     1) create an internal API: done
+     2) create the AJAX that interacts with the API endpoint and renders the info
 
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
     -???

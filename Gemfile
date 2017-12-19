@@ -43,6 +43,8 @@ gem 'validates_email_format_of'
 
 gem 'jquery-rails'
 
+gem 'active_model_serializers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
