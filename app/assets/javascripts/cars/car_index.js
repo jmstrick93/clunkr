@@ -1,7 +1,5 @@
-$(function(){
-  alert("JS LOADED")
+document.addEventListener("turbolinks:load", function(){
 
   
-
 
 })
