@@ -20,6 +20,7 @@ document.addEventListener("turbolinks:load", function(){
   $prevCarButton.on("click", function(e){
     e.preventDefault()
     currentID = currentID-1
+    //must stop it from going below zero
     const getReq = $.get(`/cars/${currentID}.json`)
     loadCarShowAjax(getReq, $infoDiv)
   })
@@ -27,6 +28,7 @@ document.addEventListener("turbolinks:load", function(){
   $nextCarButton.on("click", function(e){
     e.preventDefault()
     currentID = currentID+1
+    //must stop it from going above max
     const getReq = $.get(`/cars/${currentID}.json`)
     loadCarShowAjax(getReq, $infoDiv)
   })
@@ -70,6 +72,7 @@ document.addEventListener("turbolinks:load", function(){
 
       for (let o of response.users){
         newHTML += `<li>$<a href="/users/${o.id}">{o.username}</a></li>`
+        //must stop names from duplicating
       }
       newHTML += `</ul>`
           selectedDiv.html(newHTML)
