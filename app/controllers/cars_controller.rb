@@ -8,6 +8,10 @@ class CarsController < ApplicationController
   #I should make a different home page
 
   def index
+    #we want to hijack this so it always requests JSON and fires and AJAX request?
+    #instead of immediately loading all the cars, pass it off to some JS script? (sounds like that needs tweaking in the views)
+
+    #how bout this: at first load no data with HTML, then on pageload, fire and ajax request to get all the cars with filter "all"
     if field_has_content(params[:brand_id])
       @cars = Brand.find_by(id: params[:brand_id]).cars
     elsif
