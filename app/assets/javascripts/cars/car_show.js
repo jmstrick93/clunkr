@@ -3,7 +3,7 @@ document.addEventListener("turbolinks:load", function(){
   const $prevCarButton = $("a#prev-car-button")
   const $nextCarButton = $("a#next-car-button")
   const initialUrlParams = parseURL()
-  const initialID = parseURL().id
+  const initialID = parseInt(parseURL().id)
   let currentID = initialID
   //parse URL for info
 
@@ -21,20 +21,18 @@ document.addEventListener("turbolinks:load", function(){
     e.preventDefault()
     currentID = currentID-1
     const getReq = $.get(`/cars/${currentID}.json`)
-    loadCarShowAjax($getReq, $infoDiv)
+    loadCarShowAjax(getReq, $infoDiv)
   })
 
   $nextCarButton.on("click", function(e){
     e.preventDefault()
     currentID = currentID+1
     const getReq = $.get(`/cars/${currentID}.json`)
-    loadCarShowAjax($getReq, $infoDiv)
-    alert("next car")
+    loadCarShowAjax(getReq, $infoDiv)
   })
 
   function loadCarShowAjax(request, selectedDiv){
     request.done(function(response){
-      debugger;
       let newHTML = ''
 
       newHTML += `<div><h1>${response.year} ${response.brand.name} ${response.name}</h1><a href="/cars/${currentID}/edit">Edit Car</a> <br> </div>
@@ -49,8 +47,8 @@ document.addEventListener("turbolinks:load", function(){
 
 
 
-      for (let t of response.types) {
-        newHTML += `<li>${t}</li>`
+      for (let t of response.car_types) {
+        newHTML += `<li>${t.name}</li>`
       }
       newHTML += `
           </ul>
@@ -59,14 +57,10 @@ document.addEventListener("turbolinks:load", function(){
          <ul>`
 
       for (let r of response.resources){
-        newHTML += `<li>${r}</li>`
+        newHTML += `<li><a href="/cars/${currentID}/resources/${r.id}">${r.title}</a></li>`
       }
 
       newHTML += `</ul>
-           <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
-             <li><a href="/cars/1/resources/1">1969 Chevy Impala Owners Manual - manual</a></li>
-           <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
-             <li><a href="/cars/1/resources/5">1969 Chevrolet Impala Custom Coupe Five-Speed - video</a></li>
            <br>
             <a href="/cars/${currentID}/resources/new">Add Resource For This Car</a>
          </ul>
@@ -74,8 +68,8 @@ document.addEventListener("turbolinks:load", function(){
          <h4>Owners: 1</h4>
           <ul>`
 
-      for (let o of response.owners){
-        newHTML += `<li>${o}</li>`
+      for (let o of response.users){
+        newHTML += `<li>$<a href="/users/${o.id}">{o.username}</a></li>`
       }
       newHTML += `</ul>`
           selectedDiv.html(newHTML)
