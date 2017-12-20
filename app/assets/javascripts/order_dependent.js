@@ -1,0 +1,1 @@
+//= cars/car_index
