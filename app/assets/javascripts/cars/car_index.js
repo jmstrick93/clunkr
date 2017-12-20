@@ -1,4 +1,9 @@
 document.addEventListener("turbolinks:load", function(){
+  loadCarsIndexAjax()
+})
+
+
+function loadCarsIndexAjax(){
   const $carListDiv =  $("body.index.cars div#car-index-list")
 
   let newCarListDivContents = ""
@@ -13,4 +18,4 @@ document.addEventListener("turbolinks:load", function(){
     }
     $carListDiv.html(newCarListDivContents)
   })
-})
+}
