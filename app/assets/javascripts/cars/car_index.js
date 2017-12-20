@@ -1,9 +1,23 @@
 document.addEventListener("turbolinks:load", function(){
+  const $carListDiv =  $("body.index.cars div#car-index-list")
+  const $filterButton = $("body.index.cars input.filter-submit")
+  const $filterForm = $("body.index.cars form.filter-form")
+
+  $filterForm.on("submit", function(e){
+    e.preventDefault()
+    let values = $(this).serialize()
+    $.get('/cars.json', values).done(function(resp){
+      loadCarsIndexAjax()
+    })
+  })
+
   loadCarsIndexAjax()
+
 })
 
 
-function loadCarsIndexAjax(){
+function loadCarsIndexAjax(getRequest){
+
   const $carListDiv =  $("body.index.cars div#car-index-list")
 
   let newCarListDivContents = ""
