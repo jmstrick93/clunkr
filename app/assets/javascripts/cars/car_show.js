@@ -2,51 +2,83 @@ document.addEventListener("turbolinks:load", function(){
   const $infoDiv = $("div.car-show-info")
   const $prevCarButton = $("a#prev-car-button")
   const $nextCarButton = $("a#next-car-button")
+  const initialUrlParams = parseURL()
+  const initialID = parseURL().id
+  let currentID = initialID
+  //parse URL for info
 
+  function parseURL(){
+    let thePath = window.location.pathname.split("/")
+    let pathObject = {}
+    pathObject["object"]=thePath[1]
+    pathObject["id"] = thePath[2]
+    return pathObject
+  }
 
+  loadCarShowAjax($.get(`/cars/${currentID}.json`), $infoDiv)
 
   $prevCarButton.on("click", function(e){
     e.preventDefault()
-    loadCarShowAjax($.get("/cars/1.json"), $infoDiv)
+    currentID = currentID-1
+    const getReq = $.get(`/cars/${currentID}.json`)
+    loadCarShowAjax($getReq, $infoDiv)
   })
 
   $nextCarButton.on("click", function(e){
     e.preventDefault()
+    currentID = currentID+1
+    const getReq = $.get(`/cars/${currentID}.json`)
+    loadCarShowAjax($getReq, $infoDiv)
     alert("next car")
   })
 
   function loadCarShowAjax(request, selectedDiv){
     request.done(function(response){
-      selectedDiv.html(`<div><h1>1493 Chevrolet Impalaaa</h1><a href="/cars/1/edit">Edit Car</a> <br> </div>
+      debugger;
+      let newHTML = ''
+
+      newHTML += `<div><h1>${response.year} ${response.brand.name} ${response.name}</h1><a href="/cars/${currentID}/edit">Edit Car</a> <br> </div>
         <br>
 
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/1965_Chevrolet_Impala_Super_Sport_Coupe_%281%29.JPG" alt="1965 chevrolet impala super sport coupe %281%29" width="600" height="400" />
+        <img src="${response.photo_url}" alt="car photo" width="600" height="400" />
         <!-- would be cool to have a "added by" section  -->
 
-          <p><strong>Brand: </strong> <a href="/brands/3">Chevrolet</a></p>
-
+          <p><strong>Brand: </strong> <a href="/brands/${response.brand_id}">${response.brand.name}</a></p>
           <h4>Types: </h4>
-          <ul>
-              <li>sedan</li>
-              <li>coupe</li>
+          <ul>`
+
+
+
+      for (let t of response.types) {
+        newHTML += `<li>${t}</li>`
+      }
+      newHTML += `
           </ul>
 
          <h4>Resources: </h4>
-         <ul>
+         <ul>`
+
+      for (let r of response.resources){
+        newHTML += `<li>${r}</li>`
+      }
+
+      newHTML += `</ul>
            <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
              <li><a href="/cars/1/resources/1">1969 Chevy Impala Owners Manual - manual</a></li>
            <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
              <li><a href="/cars/1/resources/5">1969 Chevrolet Impala Custom Coupe Five-Speed - video</a></li>
            <br>
-            <a href="/cars/1/resources/new">Add Resource For This Car</a>
+            <a href="/cars/${currentID}/resources/new">Add Resource For This Car</a>
          </ul>
 
          <h4>Owners: 1</h4>
-          <ul>
-              <li><a href="/users/3">Mike</a></li>
-          </ul>
-          `
-        )
+          <ul>`
+
+      for (let o of response.owners){
+        newHTML += `<li>${o}</li>`
+      }
+      newHTML += `</ul>`
+          selectedDiv.html(newHTML)
     })
 
   }
