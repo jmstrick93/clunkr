@@ -13,5 +13,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require handlebars.runtime
 //= require cars/car_index
 //= require_tree .
