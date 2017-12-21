@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require handlebars
 //= require turbolinks
 //= require jquery
-//= require handlebars.runtime
-//= require cars/car_index
+//= require car
 //= require_tree .

@@ -1,2 +1,2 @@
-//= cars/car_index
-//= cars/car_show
+//= require cars
+//= require cars/car_show
