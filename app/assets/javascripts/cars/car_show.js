@@ -19,10 +19,12 @@ document.addEventListener("turbolinks:load", function(){
 
   $prevCarButton.on("click", function(e){
     e.preventDefault()
-    currentID = currentID-1
-    //must stop it from going below zero
-    const getReq = $.get(`/cars/${currentID}.json`)
-    loadCarShowAjax(getReq, $infoDiv)
+      if (currentID > 1){
+      currentID = currentID-1
+      //must stop it from going below zero
+      const getReq = $.get(`/cars/${currentID}.json`)
+      loadCarShowAjax(getReq, $infoDiv)
+    }
   })
 
   $nextCarButton.on("click", function(e){
@@ -42,7 +44,8 @@ document.addEventListener("turbolinks:load", function(){
 }
 
   function loadCarShowAjax(request, selectedDiv){
-    request.done(function(response){
+    request.success(function(response){
+      if (response != null){
       let uniqueUserList = removeDuplicateUsingFilter(response.users)
       let newHTML = ''
 
@@ -85,6 +88,9 @@ document.addEventListener("turbolinks:load", function(){
       }
       newHTML += `</ul>`
           selectedDiv.html(newHTML)
+        } else{
+          currentID -= 1
+        }
     })
 
   }
