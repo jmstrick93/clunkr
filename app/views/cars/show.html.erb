@@ -1,3 +1,22 @@
- <a href=# id="prev-car-button">Previous Car</a> ... <a href=# id="next-car-button">Next Car</a>
+<a href=# id="prev-car-button">Previous Car</a> ... <a href=# id="next-car-button">Next Car</a>
 <div class="car-show-info">
 </div>
+
+<script id="car-show-template" type="text/x-handlebars-template">
+  <br>
+  <img src="{{photo_url}}" alt="car photo" width="600" height="400">
+  <!-- would be cool to have a "added by" section  -->
+
+    <p><strong>Brand: </strong> <a href="/brands/{{brand_id}}">{{brand.name}}</a></p>
+    <h4>Types: </h4> <!-- need to use a hb partial or an each? -->
+    <ul><li>roadster</li><li>coupe</li>
+    </ul>
+
+   <h4>Resources: </h4> <!--another hb partial or each? -->
+   <ul><li><a href="/cars/3/resources/3">1969 MGB Owners Manual</a></li><li><a href="/cars/3/resources/6">MG MGB Differential Maintenance Spacer replacement</a></li></ul>
+     <br>
+      <a href="/cars/3/resources/new">Add Resource For This Car</a>
+
+   <h4>Owners: 2</h4> <!-- another hb partial or each? -->
+    <ul><li><a href="/users/1">John</a></li><li><a href="/users/1">John</a></li></ul>
+</script>
