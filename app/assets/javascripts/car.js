@@ -38,8 +38,13 @@ document.addEventListener("turbolinks:load", function(){
 
 
   function loadCarsIndexAjax(getRequest){
-    let newCarListDivContents = ""
     getRequest.done(function(response){
+      let newCarIndexList = ""
+      for (let c of response){
+        let cObj = new Car(c)
+        newCarIndexList += cObj.renderIndexInfo()
+      }
+      $carListDiv.html(newCarIndexList)
     })
   }
 
