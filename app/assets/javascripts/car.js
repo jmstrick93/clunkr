@@ -28,6 +28,12 @@ document.addEventListener("turbolinks:load", function(){
   const $carIndexListDiv =  $("body.index.cars div#car-index-list")
   const $filterButton = $("body.index.cars input.filter-submit")
   const $filterForm = $("body.index.cars form.filter-form")
+  const $showInfoDiv = $("div.car-show-info")
+  const $prevCarButton = $("a#prev-car-button")
+  const $nextCarButton = $("a#next-car-button")
+  const initialUrlParams = parseURL()
+  const initialID = parseInt(parseURL().id)
+  let currentID = initialID
 
 
   Car.indexTemplateSource = $("#car-index-template").html();
@@ -41,7 +47,13 @@ document.addEventListener("turbolinks:load", function(){
     Car.showTemplate = Handlebars.compile(Car.showTemplateSource)
   }
 
+  if (!!$carIndexListDiv){
   loadCarsIndexAjax($.get("/cars.json"))
+  }
+
+  if (!!$showInfoDiv){
+    loadCarShowAjax($.get(`/cars/#{currentID}`),$showInfoDiv)
+  }
 
   $filterForm.submit(function(e){
     e.preventDefault()
@@ -62,7 +74,42 @@ document.addEventListener("turbolinks:load", function(){
     })
   }
 
+  function loadCarShowAjax(request, selectedDiv){
+    request.success(function(response){
+      let carObj = new Car(response)
+      $showInfoDiv.html(carObj.renderShowInfo())
+    })
+  }
+
+    function parseURL(){
+      let thePath = window.location.pathname.split("/")
+      let pathObject = {}
+      pathObject["object"]=thePath[1]
+      pathObject["id"] = thePath[2]
+      return pathObject
+    }
+
+
+
+    $prevCarButton.on("click", function(e){
+      e.preventDefault()
+        if (currentID > 1){
+        currentID = currentID-1
+        //must stop it from going below zero
+        const getReq = $.get(`/cars/${currentID}.json`)
+        loadCarShowAjax(getReq, $showInfoDiv)
+      }
+    })
+
+    $nextCarButton.on("click", function(e){
+      e.preventDefault()
+      currentID = currentID+1
+      //must stop it from going above max
+      const getReq = $.get(`/cars/${currentID}.json`)
+      loadCarShowAjax(getReq, $showInfoDiv)
+    })
 })
+
 
 
 //stubbed out old file below
