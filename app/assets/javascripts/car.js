@@ -85,7 +85,7 @@ document.addEventListener("turbolinks:load", function(){
 //     return pathObject
 //   }
 //
-//   loadCarShowAjax($.get(`/cars/${currentID}.json`), $infoDiv)
+//   s
 //
 //   $prevCarButton.on("click", function(e){
 //     e.preventDefault()
