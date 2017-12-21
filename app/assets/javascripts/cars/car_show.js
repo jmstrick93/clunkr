@@ -33,8 +33,17 @@ document.addEventListener("turbolinks:load", function(){
     loadCarShowAjax(getReq, $infoDiv)
   })
 
+//copy/pasted from https://codehandbook.org/how-to-remove-duplicates-from-javascript-array/ with some edits
+  function removeDuplicateUsingFilter(arr){
+    let unique_array = arr.filter((elem, index, self) => {
+        return index == self.indexOf(elem);
+    });
+    return unique_array
+}
+
   function loadCarShowAjax(request, selectedDiv){
     request.done(function(response){
+      let uniqueUserList = removeDuplicateUsingFilter(response.users)
       let newHTML = ''
 
       newHTML += `<div><h1>${response.year} ${response.brand.name} ${response.name}</h1><a href="/cars/${currentID}/edit">Edit Car</a> <br> </div>
@@ -67,11 +76,11 @@ document.addEventListener("turbolinks:load", function(){
             <a href="/cars/${currentID}/resources/new">Add Resource For This Car</a>
          </ul>
 
-         <h4>Owners: 1</h4>
+         <h4>Owners: ${uniqueUserList.length}</h4>
           <ul>`
 
-      for (let o of response.users){
-        newHTML += `<li>$<a href="/users/${o.id}">{o.username}</a></li>`
+      for (let o of uniqueUserList){
+        newHTML += `<li><a href="/users/${o.id}">${o.username}</a></li>`
         //must stop names from duplicating
       }
       newHTML += `</ul>`
