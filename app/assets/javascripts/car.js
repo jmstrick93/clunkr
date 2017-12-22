@@ -39,16 +39,28 @@ document.addEventListener("turbolinks:load", function(){
 
   let numberOfCars //set in this scope so that the below request can change it.
   $.get("/cars.json")
-    .done(function(response){numberOfCars = response.length})
+    .done(function(response){
+      numberOfCars = response.length
+      debugger
+      if (currentID >= response.length) {
+        $nextCarButton.css("display", "none")
+        $prevCarButton.css("display", "inline")
+      } else if(currentID <= 0){
+        $prevCarButton.css("display", "none")
+        $nextCarButton.css("display", "inline")
+      }
+      else {
+        $nextCarButton.css("display", "inline")
+        $prevCarButton.css("display", "inline")
+      }
+    })
 
   Car.indexTemplateSource = $("#car-index-template").html();
   if (!!Car.indexTemplateSource) {
     Car.indexTemplate = Handlebars.compile(Car.indexTemplateSource);
   }
 
-  function showOrRemoveButton(button){
-    if Bu
-  }
+
 
   Car.showTemplateSource = $("#car-show-template").html();
   if (!!Car.showTemplateSource){
