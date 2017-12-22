@@ -4,8 +4,14 @@ class UserCar {
     this.color = attributes.color
     this.user_id = attributes.user_id
     this.car_id = attributes.car_id
+    this.car = attributes.car
     this.form = UserCar.formTemplateSource
   }
+
+  renderListing(){
+    return UserCar.listingTemplate(this)
+  }
+
 }
 
 
@@ -21,8 +27,9 @@ document.addEventListener("turbolinks:load", function(){
   $addUserCarButton = $(".add-a-car-button")
   $newUserCarForm = $("form.new_user_car")
   $userCarFormDiv = $("#user-car-form-div")
+  $userCarRenderDiv = $("ul.user-cars-list")
 
-  UserCar.listingTemplateSource = $("#user-car-listing-template")
+  UserCar.listingTemplateSource = $("#user-car-listing-template").html()
   UserCar.listingTemplate = Handlebars.compile(UserCar.listingTemplateSource)
 
   $addUserCarButton.on("click", function(e){
@@ -45,7 +52,8 @@ document.addEventListener("turbolinks:load", function(){
     let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
       let newUserCar = new UserCar(resp)
-
+        debugger
+      $userCarRenderDiv.append(newUserCar.renderListing())
     })
   })
 

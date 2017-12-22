@@ -1,10 +1,11 @@
 <h1><%= @user.username %></h1>
 
 <h3>Cars: <%= @user.user_cars.count %></h3>
-
+  <ul class="user-cars-list">
   <% @user.user_cars.each do |uc| %>
       <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
   <% end %>
+  </ul>
   <br>
   <%= add_a_car_button(@user) %>
 <br>
@@ -28,5 +29,5 @@
   <% end %>
 </div>
 <script id="user-car-listing-template" type="text/x-handlebars-template">
-  <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
+  <li>{{this.car.year}} {{this.car.brand.name}} {{this.car.name}} - Color: <div style="display: inline-block; background-color:  {{this.color}}; width: 20px; height: 20px; margin: 5px; border: 1px solid rgba(0, 0, 0, .2);" ></div> </li>
 </script>
