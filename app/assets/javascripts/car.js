@@ -31,28 +31,17 @@ document.addEventListener("turbolinks:load", function(){
   const $filterButton = $("body.index.cars input.filter-submit")
   const $filterForm = $("body.index.cars form.filter-form")
   const $showInfoDiv = $("div.car-show-info")
-  const $prevCarButton = $("a#prev-car-button")
-  const $nextCarButton = $("a#next-car-button")
+  const $prevCarButton = $("button#prev-car-button")
+  const $nextCarButton = $("button#next-car-button")
   const initialUrlParams = parseURL()
   const initialID = parseInt(parseURL().id)
   let currentID = initialID // at beginning, sets "currentID" variable once
+
 
   let numberOfCars //set in this scope so that the below request can change it.
   $.get("/cars.json")
     .done(function(response){
       numberOfCars = response.length
-      debugger
-      if (currentID >= response.length) {
-        $nextCarButton.css("display", "none")
-        $prevCarButton.css("display", "inline")
-      } else if(currentID <= 0){
-        $prevCarButton.css("display", "none")
-        $nextCarButton.css("display", "inline")
-      }
-      else {
-        $nextCarButton.css("display", "inline")
-        $prevCarButton.css("display", "inline")
-      }
     })
 
   Car.indexTemplateSource = $("#car-index-template").html();
@@ -110,24 +99,54 @@ document.addEventListener("turbolinks:load", function(){
       return pathObject
     }
 
+    function checkNavButtonContext(){
+      debugger
+      if (currentID >= numberOfCars) {
+        $nextCarButton.css("display", "none")
+        $prevCarButton.css("display", "inline")
+      } else if(currentID <= 1){
+        $prevCarButton.css("display", "none")
+        $nextCarButton.css("display", "inline")
+      }
+      else {
+        $nextCarButton.css("display", "inline")
+        $prevCarButton.css("display", "inline")
+      }
+    }
 
 
     $prevCarButton.on("click", function(e){
       e.preventDefault()
         if (currentID > 1){
-        currentID = currentID-1
-        //must stop it from going below zero
-        const getReq = $.get(`/cars/${currentID}.json`)
-        loadCarShowAjax(getReq, $showInfoDiv)
-      }
+          currentID = currentID-1
+          //must stop it from going below zero
+          const getReq = $.get(`/cars/${currentID}.json`)
+          loadCarShowAjax(getReq, $showInfoDiv)
+          getReq.done(function(resp){
+            if (!(currentID > 1)){
+              $prevCarButton.prop("disabled", true)
+            } else {
+              $prevCarButton.prop("disabled", false)
+              $nextCarButton.prop("disabled", false)
+            }
+          })
+        }
     })
     $nextCarButton.on("click", function(e){
       e.preventDefault()
-      if (!(currentID >= numberOfCars)){
+      if ((currentID < numberOfCars)){
         currentID = currentID+1
       //must stop it from going above max
         const getReq = $.get(`/cars/${currentID}.json`)
         loadCarShowAjax(getReq, $showInfoDiv)
+        getReq.done(function(resp){
+          if (!(currentID < numberOfCars)){
+            $nextCarButton.prop("disabled", "true")
+          } else {
+            $prevCarButton.prop("disabled", false)
+            $nextCarButton.prop("disabled", false)
+          }
+        })
       }
     })
 
