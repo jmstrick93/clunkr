@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery
 //= require car
+//= require resources
 //= require_tree .

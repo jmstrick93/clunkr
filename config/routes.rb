@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/cars/just_added', to: 'cars#just_added', as: 'cars_just_added'
   get '/resources/just_added', to: 'resources#just_added', as: 'resources_just_added'
+  get 'users/:user_id/user_cars/:id', to: 'user_cars#show'
+  get 'users/:id/user_cars', to: 'user_cars#index'
 
   resources :resources
   resources :brands do

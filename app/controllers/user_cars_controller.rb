@@ -21,6 +21,18 @@ class UserCarsController < ApplicationController
     end
   end
 
+  def show
+    binding.pry
+    @user_car = UserCar.find_by(id: params[:id], user_id: params[:user_id])
+    render json: @user_car
+  end
+
+  def index
+    @user = User.find(params[:id])
+    @user_cars = @user.user_cars
+    render json: @user_cars
+  end
+
   def user_car_params
     params.require(:user_car).permit(:user_id, :car_id, :color)
   end
