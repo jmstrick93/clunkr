@@ -12,13 +12,10 @@ document.addEventListener("turbolinks:load", function(){
   $addUserCarButton = $(".add-a-car-button")
   $userCarFormDiv = $("#user-car-form-div")
 
-  UserCar.formTemplateSource = $("#user-car-form-template").html();
-  UserCar.formTemplate = Handlebars.compile(UserCar.formTemplateSource);
-  debugger;
 
   $addUserCarButton.on("click", function(e){
     e.preventDefault();
-    debugger;
+    $userCarFormDiv.prop("hidden", false)
 
   })
 

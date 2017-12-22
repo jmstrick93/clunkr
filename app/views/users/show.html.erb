@@ -5,24 +5,22 @@
   <% @user.user_cars.each do |uc| %>
       <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
   <% end %>
+<br>
+<div id="user-car-form-div" hidden>
+  <h4>Add Car To Your Collection</h4>
+  <%= form_for @user_car, :url => "#{@user.id}/user_cars" do |f| %>
 
-<div id="user-car-form-div" display="none">
-  <h2>Add Car To Your Collection</h2>
-
-  <%= form_for @user_car, :url => "user/#{@user.id}/user_cars" do |f| %>
-
-    <%= f.hidden_field :user_id %>
-
+    <%= f.hidden_field :user_id, value: @user.id %>
+    
     <%= f.label :car_id, "Car:" %> <br>
     <%= f.collection_select :car_id, Car.all, :id, :full_title %>
     <br>
     <br>
 
-
-
     <%= f.label :color, "Color: " %> <br>
     <%= f.color_field :color %>
-
+    <br>
+    <br>
     <%= f.submit "Add Car" %>
 
   <% end %>
