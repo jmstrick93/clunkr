@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @cars = Car.all
+    @user_car = UserCar.new
   end
 
   def destroy

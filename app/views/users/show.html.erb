@@ -6,29 +6,25 @@
       <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
   <% end %>
 
-<div id="user-car-form-div"></div>
-
-
-<script id="user-car-form-template" type="text/x-handlebars-template">
+<div id="user-car-form-div" display="none">
   <h2>Add Car To Your Collection</h2>
-  <form class="new_user_car" id="new_user_car" action="/users/<%= @user.id %>/user_cars" accept-charset="UTF-8" method="post">
-    <input name="utf8" type="hidden" value="&#x2713;" />
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
-    <input type="hidden" value="<%= @user.id %>" name="user_car[user_id]" id="user_car_user_id" />
+  <%= form_for @user_car, :url => "user/#{@user.id}/user_cars" do |f| %>
 
-    <label for="user_car_car_id">Car:</label> <br>
-    <select name="user_car[car_id]" id="user_car_car_id">
-      <%= @cars.each do |car| %>
-        <option value="<%= car.id %>"><%= car.full_title %></option>
-      <% end %>
-    </select>
+    <%= f.hidden_field :user_id %>
+
+    <%= f.label :car_id, "Car:" %> <br>
+    <%= f.collection_select :car_id, Car.all, :id, :full_title %>
     <br>
     <br>
 
-    <label for="user_car_color">Color: </label> <br>
-    <input type="color" name="user_car[color]" id="user_car_color" />
-    <input type="submit" name="commit" value="Add Car" data-disable-with="Add Car" />
-  </form>
 
-</script>
+
+    <%= f.label :color, "Color: " %> <br>
+    <%= f.color_field :color %>
+
+    <%= f.submit "Add Car" %>
+
+  <% end %>
+
+</div>

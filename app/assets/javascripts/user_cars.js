@@ -19,7 +19,7 @@ document.addEventListener("turbolinks:load", function(){
   $addUserCarButton.on("click", function(e){
     e.preventDefault();
     debugger;
-    $userCarFormDiv.html(UserCar.form)
+
   })
 
 
