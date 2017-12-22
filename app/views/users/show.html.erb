@@ -5,3 +5,30 @@
   <% @user.user_cars.each do |uc| %>
       <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
   <% end %>
+
+<div id="user-car-form-div"></div>
+
+
+<script id="user-car-form-template" type="text/x-handlebars-template">
+  <h2>Add Car To Your Collection</h2>
+  <form class="new_user_car" id="new_user_car" action="/users/{{<%= @user.id %>}}/user_cars" accept-charset="UTF-8" method="post">
+    <input name="utf8" type="hidden" value="&#x2713;" />
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+    <input type="hidden" value="{{<%= @user.id %>}}" name="user_car[user_id]" id="user_car_user_id" />
+
+    <label for="user_car_car_id">Car:</label> <br>
+    <select name="user_car[car_id]" id="user_car_car_id">
+      {{#each this}}
+      <option value="1">1969 Chevrolet Impala</option>
+      <option value="2">1969 Porsche 911</option>
+      <option value="3">1969 MG MGB</option></select>
+    <br>
+    <br>
+
+    <label for="user_car_color">Color: </label> <br>
+    <input type="color" name="user_car[color]" id="user_car_color" />
+    <input type="submit" name="commit" value="Add Car" data-disable-with="Add Car" />
+  </form>
+
+</script>

@@ -7,7 +7,7 @@ module UsersHelper
 
   def add_a_car_button(user)
     if (!!current_user && user.id == current_user.id) || current_user.admin
-      link_to "Add A Car", new_user_user_car_path(@user)
+      link_to "Add A Car", new_user_user_car_path(@user), {class: "add-a-car-button"}
     end
   end
 end
