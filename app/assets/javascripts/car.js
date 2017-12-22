@@ -35,28 +35,34 @@ document.addEventListener("turbolinks:load", function(){
   const $nextCarButton = $("a#next-car-button")
   const initialUrlParams = parseURL()
   const initialID = parseInt(parseURL().id)
-  let currentID = initialID
+  let currentID = initialID // at beginning, sets "currentID" variable once
 
+  let numberOfCars //set in this scope so that the below request can change it.
+  $.get("/cars.json")
+    .done(function(response){numberOfCars = response.length})
 
   Car.indexTemplateSource = $("#car-index-template").html();
   if (!!Car.indexTemplateSource) {
     Car.indexTemplate = Handlebars.compile(Car.indexTemplateSource);
   }
 
+  function showOrRemoveButton(button){
+    if Bu
+  }
 
   Car.showTemplateSource = $("#car-show-template").html();
   if (!!Car.showTemplateSource){
     Car.showTemplate = Handlebars.compile(Car.showTemplateSource)
   }
-
   if ($carIndexListDiv.length > 0){
-
-  loadCarsIndexAjax($.get("/cars.json"))
+    loadCarsIndexAjax($.get("/cars.json"))
   }
-
   if ($showInfoDiv.length > 0){
     loadCarShowAjax($.get(`/cars/${currentID}.json`), $showInfoDiv)
   }
+
+
+
 
   $filterForm.submit(function(e){
     e.preventDefault()
@@ -80,7 +86,6 @@ document.addEventListener("turbolinks:load", function(){
   function loadCarShowAjax(request, selectedDiv){
     request.done(function(response){
       let carObj = new Car(response)
-
       $showInfoDiv.html(carObj.renderShowInfo())
     })
   }
@@ -106,10 +111,12 @@ document.addEventListener("turbolinks:load", function(){
     })
     $nextCarButton.on("click", function(e){
       e.preventDefault()
-      currentID = currentID+1
+      if (!(currentID >= numberOfCars)){
+        currentID = currentID+1
       //must stop it from going above max
-      const getReq = $.get(`/cars/${currentID}.json`)
-      loadCarShowAjax(getReq, $showInfoDiv)
+        const getReq = $.get(`/cars/${currentID}.json`)
+        loadCarShowAjax(getReq, $showInfoDiv)
+      }
     })
 
     Handlebars.registerHelper("debug", function(optionalValue) {
@@ -123,8 +130,8 @@ document.addEventListener("turbolinks:load", function(){
       console.log(optionalValue);
     }
   });
+  console.log(numberOfCars)
 })
-
 
 
 //stubbed out old file below
