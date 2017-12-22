@@ -8,6 +8,7 @@ class UserCar {
   }
 }
 
+
 function parseURL(){
   let thePath = window.location.pathname.split("/")
   let pathObject = {}
@@ -21,6 +22,8 @@ document.addEventListener("turbolinks:load", function(){
   $newUserCarForm = $("form.new_user_car")
   $userCarFormDiv = $("#user-car-form-div")
 
+  UserCar.listingTemplateSource = $("#user-car-listing-template")
+  UserCar.listingTemplate = Handlebars.compile(UserCar.listingTemplateSource)
 
   $addUserCarButton.on("click", function(e){
     e.preventDefault();
@@ -39,10 +42,10 @@ document.addEventListener("turbolinks:load", function(){
     let values = $(this).serialize()
     let userId = parseURL().id
     //below is just stubbed out
-    let posting = $.post(`/users/${userId}/user_cars`, values)
+    let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
-      console.log(resp)
-      debugger;
+      let newUserCar = new UserCar(resp)
+
     })
   })
 

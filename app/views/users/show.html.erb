@@ -26,5 +26,7 @@
     <%= f.submit "Add Car" %>
 
   <% end %>
-
 </div>
+<script id="user-car-listing-template" type="text/x-handlebars-template">
+  <li><%= link_to uc.car_full_title, car_path(uc.car) %> - Color: <%= colorbox(uc)%> </li>
+</script>
