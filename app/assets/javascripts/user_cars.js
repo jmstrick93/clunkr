@@ -15,8 +15,14 @@ document.addEventListener("turbolinks:load", function(){
 
   $addUserCarButton.on("click", function(e){
     e.preventDefault();
-    $userCarFormDiv.prop("hidden", false)
-
+    switch ($userCarFormDiv.prop("hidden")){
+      case true:
+        $userCarFormDiv.prop("hidden", false)
+        break;
+      case false:
+        $userCarFormDiv.prop("hidden", true)
+        break;
+    }
   })
 
 
