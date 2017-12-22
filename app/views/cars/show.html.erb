@@ -10,16 +10,19 @@
     <p><strong>Brand: </strong> <a href="/brands/{{brand_id}}">{{brand.name}}</a></p>
     <h4>Types: </h4> <!-- need to use a hb partial or an each? -->
     <ul>
-    {{debug}}
-    {{#each this}}
+    {{#each this.car_types}}
       <li>{{name}}</li>
     {{/each}}
     </ul>
 
    <h4>Resources: </h4> <!--another hb partial or each? -->
-   <ul><li><a href="/cars/3/resources/3">1969 MGB Owners Manual</a></li><li><a href="/cars/3/resources/6">MG MGB Differential Maintenance Spacer replacement</a></li></ul>
+   <ul>
+     {{#each this.resources}}
+     {{debug}}
+     <li><a href="/cars/{{this.id}}/resources/{{id}}">{{title}}</a></li>
+     {{/each}}
      <br>
-      <a href="/cars/3/resources/new">Add Resource For This Car</a>
+      <a href="/cars/{{id}}/resources/new">Add Resource For This Car</a>
 
    <h4>Owners: 2</h4> <!-- another hb partial or each? -->
     <ul><li><a href="/users/1">John</a></li><li><a href="/users/1">John</a></li></ul>

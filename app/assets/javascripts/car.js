@@ -8,6 +8,8 @@ class Car {
     this.created_at = attributes.created_at
     this.updated_at = attributes.updated_at
     this.brand = attributes.brand
+    this.car_types = attributes.car_types
+    this.resources = attributes.resources
   }
 
   renderIndexInfo(){
@@ -48,12 +50,12 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   if ($carIndexListDiv.length > 0){
-    debugger;
+
   loadCarsIndexAjax($.get("/cars.json"))
   }
 
   if ($showInfoDiv.length > 0){
-    loadCarShowAjax($.get(`/cars/#{currentID}`),$showInfoDiv)
+    loadCarShowAjax($.get(`/cars/${currentID}.json`), $showInfoDiv)
   }
 
   $filterForm.submit(function(e){
@@ -76,9 +78,9 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   function loadCarShowAjax(request, selectedDiv){
-    request.success(function(response){
+    request.done(function(response){
       let carObj = new Car(response)
-      debugger;
+
       $showInfoDiv.html(carObj.renderShowInfo())
     })
   }
