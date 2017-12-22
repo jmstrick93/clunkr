@@ -9,7 +9,11 @@
 
     <p><strong>Brand: </strong> <a href="/brands/{{brand_id}}">{{brand.name}}</a></p>
     <h4>Types: </h4> <!-- need to use a hb partial or an each? -->
-    <ul><li>roadster</li><li>coupe</li>
+    <ul>
+    {{debug}}
+    {{#each this}}
+      <li>{{name}}</li>
+    {{/each}}
     </ul>
 
    <h4>Resources: </h4> <!--another hb partial or each? -->

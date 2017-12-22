@@ -47,11 +47,12 @@ document.addEventListener("turbolinks:load", function(){
     Car.showTemplate = Handlebars.compile(Car.showTemplateSource)
   }
 
-  if (!!$carIndexListDiv){
+  if ($carIndexListDiv.length > 0){
+    debugger;
   loadCarsIndexAjax($.get("/cars.json"))
   }
 
-  if (!!$showInfoDiv){
+  if ($showInfoDiv.length > 0){
     loadCarShowAjax($.get(`/cars/#{currentID}`),$showInfoDiv)
   }
 
@@ -77,6 +78,7 @@ document.addEventListener("turbolinks:load", function(){
   function loadCarShowAjax(request, selectedDiv){
     request.success(function(response){
       let carObj = new Car(response)
+      debugger;
       $showInfoDiv.html(carObj.renderShowInfo())
     })
   }
@@ -100,7 +102,6 @@ document.addEventListener("turbolinks:load", function(){
         loadCarShowAjax(getReq, $showInfoDiv)
       }
     })
-
     $nextCarButton.on("click", function(e){
       e.preventDefault()
       currentID = currentID+1
@@ -108,6 +109,18 @@ document.addEventListener("turbolinks:load", function(){
       const getReq = $.get(`/cars/${currentID}.json`)
       loadCarShowAjax(getReq, $showInfoDiv)
     })
+
+    Handlebars.registerHelper("debug", function(optionalValue) {
+    console.log("Current Context");
+    console.log("====================");
+    console.log(this);
+
+    if (optionalValue) {
+      console.log("Value");
+      console.log("====================");
+      console.log(optionalValue);
+    }
+  });
 })
 
 
