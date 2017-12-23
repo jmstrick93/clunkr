@@ -1,5 +1,5 @@
 class UserCarSerializer < ActiveModel::Serializer
-  attributes :id, :user, :color
+  attributes :id, :user, :color, :car
   belongs_to :user
-  belongs_to :car, serializer: CarSerializer
+  belongs_to :car
 end

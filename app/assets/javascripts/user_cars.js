@@ -2,13 +2,28 @@ class UserCar {
   constructor(attributes){
     this.id = attributes.id
     this.color = attributes.color
-    this.user_id = attributes.user_id
-    this.car_id = attributes.car_id
+    this.user_id = attributes.user.id
+    this.car_id = attributes.car.id
     this.car = attributes.car
+    this.brand = attributes.car.brand
     this.form = UserCar.formTemplateSource
   }
 
+  getBrandName(){
+    let brand_name
+    $.ajax({
+      type: "GET",
+      url:`/cars/${this.car_id}.json`,
+      async: false,
+      success: function(resp){
+        brand_name =  resp.brand.name
+      }
+    })
+    return brand_name
+  }
+
   renderListing(){
+    this.brand_name = this.getBrandName()
     return UserCar.listingTemplate(this)
   }
 
@@ -51,7 +66,6 @@ document.addEventListener("turbolinks:load", function(){
     //below is just stubbed out
     let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
-
       let newUserCar = new UserCar(resp);
       $userCarRenderDiv.append(newUserCar.renderListing());
     }).error(function(resp){
