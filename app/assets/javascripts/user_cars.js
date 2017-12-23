@@ -7,8 +7,11 @@ class UserCar {
     this.car = attributes.car
     this.brand = attributes.car.brand
     this.form = UserCar.formTemplateSource
+    this.brand_name = this.getBrandName()
   }
 
+  //the below is asyncronous to ensure that the UserCar object has a brand_name attribute before the listing is rendered.
+  //that functionality is deprecated but I am actively searching for an alternative.
   getBrandName(){
     let brand_name
     $.ajax({
@@ -23,7 +26,6 @@ class UserCar {
   }
 
   renderListing(){
-    this.brand_name = this.getBrandName()
     return UserCar.listingTemplate(this)
   }
 
