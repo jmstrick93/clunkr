@@ -10,6 +10,7 @@ class Car {
     this.brand = attributes.brand
     this.car_types = attributes.car_types
     this.resources = attributes.resources
+    this.users = attributes.users
   }
 
   renderIndexInfo(){

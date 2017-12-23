@@ -27,6 +27,10 @@
 
   <!-- DONT FORGET TO FIX THIS  -->
 
-   <h4>Owners: 2</h4> <!-- another hb partial or each? -->
-    <ul><li><a href="/users/1">John</a></li><li><a href="/users/1">John</a></li></ul>
+   <h4>Owners: {{users.length}}</h4> <!-- another hb partial or each? -->
+   <ul>
+    {{#each this.users}}
+    <li><a href="/users/1">{{username}}</a></li>
+    {{/each}}
+    </ul>
 </script>
