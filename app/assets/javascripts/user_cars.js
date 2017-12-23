@@ -52,7 +52,6 @@ document.addEventListener("turbolinks:load", function(){
     let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
       let newUserCar = new UserCar(resp)
-        debugger
       $userCarRenderDiv.append(newUserCar.renderListing())
     })
   })
