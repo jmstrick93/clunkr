@@ -27,7 +27,7 @@ document.addEventListener("turbolinks:load", function(){
   $addUserCarButton = $(".add-a-car-button")
   $newUserCarForm = $("form.new_user_car")
   $userCarFormDiv = $("#user-car-form-div")
-  $userCarRenderDiv = $("ul.user-cars-list")
+  $userCarRenderDiv = $("ul#user-cars-list")
 
   UserCar.listingTemplateSource = $("#user-car-listing-template").html()
   UserCar.listingTemplate = Handlebars.compile(UserCar.listingTemplateSource)
@@ -51,8 +51,11 @@ document.addEventListener("turbolinks:load", function(){
     //below is just stubbed out
     let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
-      let newUserCar = new UserCar(resp)
-      $userCarRenderDiv.append(newUserCar.renderListing())
+
+      let newUserCar = new UserCar(resp);
+      $userCarRenderDiv.append(newUserCar.renderListing());
+    }).error(function(resp){
+      alert("Failed to post. Please try again later.")
     })
   })
 
