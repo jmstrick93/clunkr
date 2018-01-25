@@ -26,7 +26,9 @@ class Car {
   }
 }
 
+//the below "turbolinks:load" arrangment is a particularity for working with Ruby/Rails.  It is an alternative to $(document).ready(){...}
 document.addEventListener("turbolinks:load", function(){
+  //saving certain DOM items into variables using jQuery.s
   const $carIndexListDiv =  $("body.index.cars div#car-index-list")
   const $filterButton = $("body.index.cars input.filter-submit")
   const $filterForm = $("body.index.cars form.filter-form")
@@ -39,11 +41,13 @@ document.addEventListener("turbolinks:load", function(){
 
 
   let numberOfCars //set in this scope so that the below request can change it.
+  //used to keep track of how many car-show pages there are to cycle through / when to deactivate previous-next buttons.(see far below)
   $.get("/cars.json")
     .done(function(response){
       numberOfCars = response.length
     })
 
+  //prevents handlebars templates from compiling except on pages on which they are needed
   Car.indexTemplateSource = $("#car-index-template").html();
   if (!!Car.indexTemplateSource) {
     Car.indexTemplate = Handlebars.compile(Car.indexTemplateSource);
@@ -52,7 +56,7 @@ document.addEventListener("turbolinks:load", function(){
     loadCarsIndexAjax($.get("/cars.json"))
   }
 
-
+//prevents handlebars templates from compiling except on pages on which they are needed
   Car.showTemplateSource = $("#car-show-template").html();
   if (!!Car.showTemplateSource){
     Car.showTemplate = Handlebars.compile(Car.showTemplateSource)
@@ -61,36 +65,35 @@ document.addEventListener("turbolinks:load", function(){
     loadCarShowAjax($.get(`/cars/${currentID}.json`), $showInfoDiv)
   }
 
-
-
-
+  //JS handling of hitting submit button on filter form
   $filterForm.submit(function(e){
     e.preventDefault()
-    let values = $(this).serialize() //here, 'this' is the form element
+    let values = $(this).serialize() //here, 'this' is the form element.  serialize just converts its fields to JSON.
     debugger;
     let carList = $.get('/cars.json', values)
     loadCarsIndexAjax(carList)
   })
 
-
+  //get request to load cars for index page
   function loadCarsIndexAjax(getRequest){
     getRequest.done(function(response){
       let newCarIndexList = ""
       for (let c of response){
         let cObj = new Car(c)
-        newCarIndexList += cObj.renderIndexInfo()
+        newCarIndexList += cObj.renderIndexInfo() //renderIndexInfo is a helper method on the Car js 'object' for putting the cars params through a handlebars template
       }
       $carIndexListDiv.html(newCarIndexList)
     })
   }
 
+  //GET request to load data for car SHOW page
   function loadCarShowAjax(request, selectedDiv){
     request.done(function(response){
       let carObj = new Car(response)
       $showInfoDiv.html(carObj.renderShowInfo())
     })
   }
-
+    //for getting car ID from the URL
     function parseURL(){
       let thePath = window.location.pathname.split("/")
       let pathObject = {}
@@ -98,6 +101,7 @@ document.addEventListener("turbolinks:load", function(){
       pathObject["id"] = thePath[2]
       return pathObject
     }
+
 
     $prevCarButton.on("click", function(e){
       e.preventDefault()
@@ -138,6 +142,7 @@ document.addEventListener("turbolinks:load", function(){
       }
     })
 
+    //handlebars debugging assistant
     Handlebars.registerHelper("debug", function(optionalValue) {
     console.log("Current Context");
     console.log("====================");
