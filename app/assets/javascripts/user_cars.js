@@ -10,8 +10,7 @@ class UserCar {
     this.brand_name = this.getBrandName()
   }
 
-  //the below is asyncronous to ensure that the UserCar object has a brand_name attribute before the listing is rendered.
-  //that functionality is deprecated but I am actively searching for an alternative.
+  //the below is syncronous to ensure that the UserCar object has a brand_name attribute before the listing is rendered.
   getBrandName(){
     let brand_name
     $.ajax({
@@ -32,6 +31,7 @@ class UserCar {
 }
 
 
+//for retrieving the current userID from the URL
 function parseURL(){
   let thePath = window.location.pathname.split("/")
   let pathObject = {}
@@ -41,14 +41,15 @@ function parseURL(){
 }
 
 document.addEventListener("turbolinks:load", function(){
-  $addUserCarButton = $(".add-a-car-button")
-  $newUserCarForm = $("form.new_user_car")
-  $userCarFormDiv = $("#user-car-form-div")
-  $userCarRenderDiv = $("ul#user-cars-list")
+  const $addUserCarButton = $(".add-a-car-button")
+  const $newUserCarForm = $("form.new_user_car")
+  const $userCarFormDiv = $("#user-car-form-div")
+  const $userCarRenderDiv = $("ul#user-cars-list")
 
   UserCar.listingTemplateSource = $("#user-car-listing-template").html()
   UserCar.listingTemplate = Handlebars.compile(UserCar.listingTemplateSource)
 
+  //toggles the new user_car form div
   $addUserCarButton.on("click", function(e){
     e.preventDefault();
     switch ($userCarFormDiv.prop("hidden")){
@@ -61,13 +62,16 @@ document.addEventListener("turbolinks:load", function(){
     }
   })
 
+  //for submitting new user_car asynchronously
   $newUserCarForm.on("submit", function(e){
     e.preventDefault()
     let values = $(this).serialize()
+    //retrieves the current userId from the URL
     let userId = parseURL().id
-    //below is just stubbed out
+    //uses userId in post-request
     let posting = $.post(`/users/${userId}/user_cars.json`, values)
     posting.success(function(resp){
+      //create new UserCar js 'object' & then feed it into handlebars template using UserCar.renderListing()
       let newUserCar = new UserCar(resp);
       $userCarRenderDiv.append(newUserCar.renderListing());
     }).error(function(resp){

@@ -1,5 +1,4 @@
 class CarsController < ApplicationController
-
   before_action :require_login
   skip_before_action :require_login, only: [:index, :show]
 
@@ -8,20 +7,20 @@ class CarsController < ApplicationController
   #I should make a different home page
 
   def index
-    #we want to hijack this so it always requests JSON and fires and AJAX request?
-    #instead of immediately loading all the cars, pass it off to some JS script? (sounds like that needs tweaking in the views)
-
-    #how bout this: at first load no data with HTML, then on pageload, fire and ajax request to get all the cars with filter "all"
+    #looks to see if the search filters are in use
     if field_has_content(params[:brand_id])
       @cars = Brand.find_by(id: params[:brand_id]).cars
     elsif
       params[:year]
       @cars = Car.where(year: params[:year])
+      #if they are not in use, just load all cars onto the page.
     else
       @cars = Car.all
     end
+    #renders a result based on what is requested from client.
     respond_to do |format|
       format.html {render :index}
+      #the below renders the content from the CarSerializer if json is requested
       format.json {render json: @cars}
     end
   end

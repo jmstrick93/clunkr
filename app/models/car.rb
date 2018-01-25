@@ -18,7 +18,6 @@ class Car < ApplicationRecord
   accepts_nested_attributes_for :brand
   
 
-
   def brand_name
     self.brand.name
   end

@@ -14,7 +14,6 @@ class Car {
   }
 
   renderIndexInfo(){
-    //WHY DOES INDEXTEMPLATE TAKE (THIS) AS AN ARGUMENT BELOW?!?!
     if (!!Car.indexTemplate){
       return Car.indexTemplate(this)
     }
@@ -49,15 +48,14 @@ document.addEventListener("turbolinks:load", function(){
   if (!!Car.indexTemplateSource) {
     Car.indexTemplate = Handlebars.compile(Car.indexTemplateSource);
   }
-
+  if ($carIndexListDiv.length > 0){
+    loadCarsIndexAjax($.get("/cars.json"))
+  }
 
 
   Car.showTemplateSource = $("#car-show-template").html();
   if (!!Car.showTemplateSource){
     Car.showTemplate = Handlebars.compile(Car.showTemplateSource)
-  }
-  if ($carIndexListDiv.length > 0){
-    loadCarsIndexAjax($.get("/cars.json"))
   }
   if ($showInfoDiv.length > 0){
     loadCarShowAjax($.get(`/cars/${currentID}.json`), $showInfoDiv)
@@ -68,7 +66,8 @@ document.addEventListener("turbolinks:load", function(){
 
   $filterForm.submit(function(e){
     e.preventDefault()
-    let values = $(this).serialize()
+    let values = $(this).serialize() //here, 'this' is the form element
+    debugger;
     let carList = $.get('/cars.json', values)
     loadCarsIndexAjax(carList)
   })
@@ -100,22 +99,6 @@ document.addEventListener("turbolinks:load", function(){
       return pathObject
     }
 
-    function checkNavButtonContext(){
-      debugger
-      if (currentID >= numberOfCars) {
-        $nextCarButton.css("display", "none")
-        $prevCarButton.css("display", "inline")
-      } else if(currentID <= 1){
-        $prevCarButton.css("display", "none")
-        $nextCarButton.css("display", "inline")
-      }
-      else {
-        $nextCarButton.css("display", "inline")
-        $prevCarButton.css("display", "inline")
-      }
-    }
-
-
     $prevCarButton.on("click", function(e){
       e.preventDefault()
         if (currentID > 1){
@@ -125,6 +108,7 @@ document.addEventListener("turbolinks:load", function(){
           loadCarShowAjax(getReq, $showInfoDiv)
           getReq.done(function(resp){
             if (!(currentID > 1)){
+              //disables the "previous car" button if there is no prev car
               $prevCarButton.prop("disabled", true)
             } else {
               $prevCarButton.prop("disabled", false)
@@ -133,15 +117,18 @@ document.addEventListener("turbolinks:load", function(){
           })
         }
     })
+
     $nextCarButton.on("click", function(e){
       e.preventDefault()
       if ((currentID < numberOfCars)){
+        //global currentID value keeps track of
         currentID = currentID+1
       //must stop it from going above max
         const getReq = $.get(`/cars/${currentID}.json`)
         loadCarShowAjax(getReq, $showInfoDiv)
         getReq.done(function(resp){
           if (!(currentID < numberOfCars)){
+            //disables next car button if there is no next car
             $nextCarButton.prop("disabled", "true")
           } else {
             $prevCarButton.prop("disabled", false)
