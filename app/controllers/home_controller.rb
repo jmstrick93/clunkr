@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def root
-    redirect_to cars_path
+    render :home
   end
 
 end

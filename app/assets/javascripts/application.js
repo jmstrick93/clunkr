@@ -14,6 +14,8 @@
 //= require handlebars
 //= require turbolinks
 //= require jquery
+//= require popper
+//= require bootstrap-sprockets
 //= require car
 //= require resources
 //= require_tree .

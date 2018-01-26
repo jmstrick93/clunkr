@@ -10,14 +10,24 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar">
-        <strong><%= link_to "Clunkr.com", root_path%></strong> |
-        <%= link_to "Cars", cars_path %> |
-        <%= link_to "Brands", brands_path %> |
-        <%= link_to "Resources", resources_path %> |
-        <%= user_index_button %>
-        <%= sign_in_out_button %>
-    </div>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag "clunkr-logo/clunkr-logo-sm.png" %>
+      <% end %>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+        <ul class="navbar-nav mr-auto">
+          <li class='nav-item'><%= link_to "Cars", cars_path, class: 'nav-link' %> |</li>
+          <li class='nav-item'><%= link_to "Brands", brands_path %> |</li>
+          <li class='nav-item'><%= link_to "Resources", resources_path %> |</li>
+          <%= user_index_button %>
+          <%= sign_in_out_button %>
+        </ul>
+      </div>
+    </nav>
     <%= display_flash_messages %>
 
     <%= yield %>
