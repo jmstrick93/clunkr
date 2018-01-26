@@ -10,6 +10,8 @@ class UserCar {
     this.brand_name = this.getBrandName()
   }
 
+
+
   //the below is syncronous to ensure that the UserCar object has a brand_name attribute before the listing is rendered.
   getBrandName(){
     let brand_name
@@ -79,8 +81,35 @@ document.addEventListener("turbolinks:load", function(){
     })
   })
 
+  function renderCarsWithJS(){
+    $userCarRenderDiv.empty()
+    $.get(`/users/${parseURL().id}/user_cars`, function(resp){
+      let sortedCarList = alphabatizeCars(resp)
 
+      sortedCarList.forEach((userCar)=>{
+        const newCarObj = new UserCar(userCar)
 
+        $userCarRenderDiv.append(newCarObj.renderListing());
+      })
+      //debugger;
+    })
+
+  }
+  renderCarsWithJS();
+
+  function alphabatizeCars(array){
+    return array.sort((a, b) => {
+      const brandNameA = a.car.name.toUpperCase();
+      const brandNameB = b.car.name.toUpperCase();
+      if (brandNameA > brandNameB) {
+        return -1
+      }
+      if (brandNameB > brandNameA) {
+        return 1
+      }
+      return 0
+    })
+  }
 
 
 
