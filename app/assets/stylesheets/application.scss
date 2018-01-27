@@ -14,13 +14,6 @@
 
  @import "bootstrap";
 
-body.home.root{
-  background-image: image-url('backgrounds/background-image-recrop.png');
-  background-size: 65%;
-  background-repeat:no-repeat;
-  display: compact;
-  position: absolute;
-}
 
 .field_with_errors input  {
   display: inline;
