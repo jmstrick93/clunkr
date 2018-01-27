@@ -1,4 +1,19 @@
-<h1>Cars</h1>
+<div class='row'>
+  <h1>Cars</h1>
+  <div class='col'>
+    <div class="row">
+      <h3>Filter cars:</h3>
+      <%= form_tag("/cars", method: "get", class: "filter-form") do %>
+        <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
+
+        <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
+        <%= submit_tag "Filter", class: "filter-submit", data: { disable_with: false } %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
 
   <%# if !params[:brand_id].blank? %>
     <%# @cars = Car.where(:brand_id => params[:brand_id]) %>
@@ -8,23 +23,17 @@
 
 <p><%= link_to "Add Car To Database", new_car_path %></p>
 
-<div>
-  <h3>Filter cars:</h3>
-  <%= form_tag("/cars", method: "get", class: "filter-form") do %>
-    <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
 
-    <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
-    <%= submit_tag "Filter", class: "filter-submit", data: { disable_with: false } %>
-  <% end %>
-</div>
-
-<div id="car-index-list">
+<div class="row" id="car-index-list">
 </div>
 
 <script id="car-index-template" type="text/x-handlebars-template">
-  <div class = "car-index-item">
-    <a href="/cars/{{id}}"><img src="{{photo_url}}" width="300" height="200" /></a>
-    <p><a href="/cars/{{id}}">{{year}} {{brand.name}} {{name}}</a></p>
-    <br></br>
+  <div class='col-md-3 car-index-item' >
+    <div class = "card">
+      <a href="/cars/{{id}}"><img class ='card-img-top' src="{{photo_url}}" /></a>
+      <div class='card-body'>
+        <h5 class='card-title'><a href="/cars/{{id}}">{{year}} {{brand.name}} {{name}}</a></h5>
+      </div>
+    </div>
   </div>
 </script>
