@@ -69,7 +69,6 @@ document.addEventListener("turbolinks:load", function(){
   $filterForm.submit(function(e){
     e.preventDefault()
     let values = $(this).serialize() //here, 'this' is the form element.  serialize just converts its fields to JSON.
-    debugger;
     let carList = $.get('/cars.json', values)
     loadCarsIndexAjax(carList)
   })

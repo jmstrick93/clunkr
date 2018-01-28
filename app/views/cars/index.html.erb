@@ -1,6 +1,3 @@
-<div class="page-header">
-  <h1>Cars</h1>
-</div>
 
 
 
@@ -11,32 +8,31 @@
     <%# @cars = Car.where(:year => params[:year]) %>
   <%# end %>
 
-
-      <%= form_tag("/cars", method: "get", class: "filter-form") do %>
-
-        <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
-
-
-        <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
-
-
-        <%= submit_tag "Filter", class: "filter-submit", data: { disable_with: false } %>
-      <% end %>
-
-      <%= link_to "Add Car", new_car_path %>
-
-<div class='jumbotron'>
-  <div class="row justify-content-left" id="car-index-list">
-  </div>
-</div>
-
-<script id="car-index-template" type="text/x-handlebars-template">
-  <div class='col-auto car-index-item' >
-    <div class = "card" style='width: 20rem'>
-      <a href="/cars/{{id}}"><img class ='card-img-top' src="{{photo_url}}" /></a>
-      <div class='card-body'>
-        <h5 class='card-title'><a href="/cars/{{id}}">{{year}} {{brand.name}} {{name}}</a></h5>
+  <div class="col-12">
+    <div class="page-header">
+      <h1>Cars</h1>
+    </div>
+    <%= form_tag("/cars", method: "get", class: "filter-form") do %>
+      <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
+      <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
+      <%= submit_tag "Filter", class: "filter-submit", data: { disable_with: false } %>
+    <% end %>
+    <%= link_to "Add Car", new_car_path %>
+    <div class='jumbotron'>
+      <div class="row" id='car-index-list'>
       </div>
     </div>
+  </div>
+
+<script id="car-index-template" type="text/x-handlebars-template">
+  <div class='col-lg-3 car-index-item' align='center' >
+    <a href="/cars/{{id}}">
+      <div class = "card">
+        <img class ='card-img-top' src="{{photo_url}}" />
+        <div class='card-body'>
+          <h5 class='card-title'><a href="/cars/{{id}}">{{year}} {{brand.name}} {{name}}</a></h5>
+        </div>
+      </div>
+    </a>
   </div>
 </script>

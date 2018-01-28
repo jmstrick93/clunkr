@@ -91,7 +91,6 @@ document.addEventListener("turbolinks:load", function(){
 
         $userCarRenderDiv.append(newCarObj.renderListing());
       })
-      //debugger;
     })
 
   }
