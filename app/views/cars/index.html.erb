@@ -9,15 +9,24 @@
   <%# end %>
 
   <div class="col-12">
-    <div class="page-header">
-      <h1>Cars</h1>
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="page-header">
+          <h1>Cars</h1>
+        </div>
+      </div>
+      <div class="col" align='right'>
+        <a href="<%= new_car_path %>">
+          <button type="button" class="new-item-button">Add Car</button>
+        </a>
+      </div>
     </div>
+
     <%= form_tag("/cars", method: "get", class: "filter-form") do %>
       <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true %>
       <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true %>
       <%= submit_tag "Filter", class: "filter-submit", data: { disable_with: false } %>
     <% end %>
-    <%= link_to "Add Car", new_car_path %>
     <div class='jumbotron'>
       <div class="row" id='car-index-list'>
       </div>
