@@ -1,1 +1,6 @@
-<%= link_to "Your Profile", user_path(current_user) %> | <%= link_to "Log Out", log_out_path %>
+<li class='nav-item <%= active?("users", controller_name  ) %>'>
+  <%= link_to "Your Profile", user_path(current_user), class:'nav-link' %>
+</li>
+<li class='nav-item'>
+  <%= link_to "Log Out", log_out_path, class:'nav-link' %>
+</li>
