@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-7">
+  <div class="col-lg-7  ">
     <div class="card">
       <%= image_tag('backgrounds/background-image-recrop.png', id: 'big-home-image', class: 'card-img-top') %>
       <div class='card-body'>
@@ -15,7 +15,7 @@
       <div class="card-body">
         <h5 class="card-title">Get in the Driver's Seat</h5>
         <p class="card-text">Gather learn how to get started with classic car ownership, and connect with other users to share tips and resources. </p>
-        <a href="#" class="btn btn-primary">Get Started</a>
+        <a href="<%= sign_up_path %>" class="btn btn-primary">Get Started</a>
       </div>
     </div>
     <div class="card">
@@ -23,7 +23,7 @@
       <div class="card-body">
         <h5 class="card-title">Browse By Model</h5>
         <p class="card-text">Find your dream car and learn how to take care of it properly -- as well as what to watch out for when you're a prospective buyer.</p>
-        <a href="#" class="btn btn-primary">Start Searching</a>
+        <a href="<%= cars_path %>" class="btn btn-primary">Start Searching</a>
       </div>
     </div>
     <div class="card">
@@ -31,7 +31,7 @@
       <div class="card-body">
         <h5 class="card-title">Browse By Brand</h5>
         <p class="card-text">Loyal to a particular car company?  Look at all of the different vehicles they have produced over the years, and learn which one is right for you.</p>
-        <a href="#" class="btn btn-primary">Start Searching</a>
+        <a href="<%= brands_path %>" class="btn btn-primary">Start Searching</a>
       </div>
     </div>
   </div>
