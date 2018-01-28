@@ -21,8 +21,8 @@
       <div class="col">
         <button class ='btn btn-secondary' data-toggle="collapse" data-target='#car-index-filter-form'>Filters</button>
         <%= form_tag("/cars", method: "get", class: "filter-form inline-form collapse", id:'car-index-filter-form') do %>
-          <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true, class:'custom-select custom-select-sm' %>
-          <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true, class:'custom-select custom-select-sm'  %>
+          <%= select_tag "brand_id", options_from_collection_for_select(Brand.all, "id", "name"), include_blank: true, class:'custom-select custom-select' %>
+          <%= select_tag "year", options_for_select(Car.pluck(:year).uniq), include_blank: true, class:'custom-select custom-select'  %>
           <%= submit_tag "Apply Filter", class: "filter-submit", data: { disable_with: false }, class: 'btn btn-primary' %>
         <% end %>
       </div>
