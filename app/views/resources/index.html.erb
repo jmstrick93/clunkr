@@ -1,8 +1,24 @@
-<h1>Resources</h1>
-<!-- eventually make filterable! Like in that one exercise-->
-<%= link_to "Add a resource", new_resource_path %>
-<ul>
-  <% @resources.each do |r| %>
-    <li><%= link_to r.full_title, resource_path(r) %></li>
-  <% end %>
-</ul>
+<div class="col-12">
+  <div class="row align-items-center">
+    <div class="col-auto">
+      <div class="page-header">
+        <h3>Resources</h3>
+      </div>
+    </div>
+    <div class="col-auto" align='right'>
+      <a href="<%= new_resource_path %>">
+        <button type="button" class="btn btn-success btn-sm">Add Resource</button>
+      </a>
+    </div>
+  </div>
+  <!-- eventually make filterable! Like in that one exercise-->
+  <div class="row">
+    <div class="col">
+      <div class='list-group'>
+        <% @resources.each do |r| %>
+          <%= link_to r.full_title, resource_path(r), class: 'list-group-item list-group-item-action'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
