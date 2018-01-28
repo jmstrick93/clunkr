@@ -1,5 +1,10 @@
 <h1>Brands: </h1>
+<div class="jumbotron">
 
-<% @brands.each do |b| %>
-  <%= listable_brand_info(b) %>
-<% end %>
+  <div class="row justify-content-left">
+    <% @brands.each do |b| %>
+      <%= listable_brand_info(b) %>
+    <% end %>
+  </div>
+
+</div>

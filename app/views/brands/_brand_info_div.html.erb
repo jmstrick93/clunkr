@@ -1,5 +1,10 @@
-<div>
-  <%= link_to((image_tag brand.logo, size: "300x200"), brand_path(brand)) %>
-  <%= content_tag(:p, link_to("#{brand.name}", brand_path(brand))) %>
-  <br></br>
+<div class='col-auto brand-info-div'>
+  <a href="<%= brand_path(brand) %>">
+    <div class="card" style='width: 25rem'>
+      <img src= "<%= brand.logo %>" class='card-img-top' />
+      <div class="card-body">
+        <h5 class='card-title'> <%= brand.name %></h5>
+      </div>
+    </div>
+  </a>
 </div>
