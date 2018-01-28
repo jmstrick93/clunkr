@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Clunkr</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -33,8 +33,8 @@
       <%= yield %>
     </div>
     <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+      <div class="container-fluid">
+        <span class="text-muted">© 2018 James M. Stricker</span>
       </div>
     </footer>
   </body>
