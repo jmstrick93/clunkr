@@ -1,12 +1,17 @@
-<h1>Sign In</h1>
+<div class='row'>
+  <div class="col" style='max-width: 300px'>
 
-<%= form_tag '/sign_in' do %>
-  <div class "field">Email: <br> <%= text_field_tag :email  %></div>
-  <br>
-  <div class = "field">Password: <br> <%= password_field_tag :password %></div>
-  <br>
-  <%= button_tag "Sign In" %>
-<% end %>
-<br>
-<%= link_to "Sign In With Google", '/auth/google_oauth2' %> <br>
-<%= link_to "No account? Sign up here!", sign_up_path %>
+    <h1>Sign In</h1>
+
+    <%= bootstrap_form_tag url: '/sign_in' do %>
+      <div class "field">Email: <br> <%= text_field_tag :email  %></div>
+      <br>
+      <div class = "field">Password: <br> <%= password_field_tag :password %></div>
+      <br>
+      <%= button_tag "Sign In" %>
+    <% end %>
+    <br>
+    <%= link_to "Sign In With Google", '/auth/google_oauth2' %> <br>
+    <%= link_to "No account? Sign up here!", sign_up_path %>
+  </div>
+</div>

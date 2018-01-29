@@ -1,30 +1,26 @@
-<%= form_for resource do |f| %>
+<div class="row">
+  <div class="col" style='max-width: 500px'>
+    <%= bootstrap_form_for resource do |f| %>
 
-  <%= f.label :title, "Title: " %> <br>
-  <%= f.text_field :title %>
-  <br></br>
-  <%= f.label :source_url,  "Source URL: "  %> <br>
-  <%= f.text_field :source_url%>
-  <br></br>
-  <%= f.label :resource_type_id, "Type: " %> <br>
-  <%= f.collection_select :resource_type_id, ResourceType.all, :id, :name, include_blank: true %>
-  <br></br>
+      <%= f.text_field :title %>
+      <%= f.text_field :source_url%>
+      <%= f.label :resource_type_id, "Type: " %> <br>
+      <%= f.collection_select :resource_type_id, ResourceType.all, :id, :name, include_blank: true, hide_label: true %>
 
-  <%= f.fields_for :resource_type, ResourceType.new do |type_builder|%>
-    <%= type_builder.label :name, "OR enter name of new type: " %> <br>
-    <%= type_builder.text_field :name %>
-    <br></br>
-  <% end %>
+      <%= f.fields_for :resource_type, ResourceType.new do |type_builder|%>
+        <%= type_builder.label :name, "OR enter name of new type: " %>
+        <%= type_builder.text_field :name, hide_label: true %>
+      <% end %>
 
-  <% if params[:car_id] %>
-    <%= f.hidden_field :car_id %>
-  <% else %>
-    <%= f.label :car_id, "Select a car (if applicable)" %> <br>
-    <%= f.collection_select :car_id, Car.all, :id, :title_brand_first, include_blank: true %>
-  <% end %>
-  
-  <br></br>
+      <% if params[:car_id] %>
+        <%= f.hidden_field :car_id %>
+      <% else %>
+        <%= f.label :car_id, "Select a car (if applicable)" %>
+        <%= f.collection_select :car_id, Car.all, :id, :title_brand_first, include_blank: true, hide_label: true %>
+      <% end %>
+      <%= f.submit %>
+    <% end %>
 
+  </div>
 
-  <%= f.submit %>
-<% end %>
+</div>

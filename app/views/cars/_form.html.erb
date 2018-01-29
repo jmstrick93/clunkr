@@ -1,53 +1,40 @@
 <!-- right now, overlapping error messages (multiple, irrelevant ones showing for same year... maybe solve with nested error fields?) -->
+<div class="row">
+  <div class="col" style='max-width: 500px'>
+    <%=bootstrap_form_for car do |f| %>
 
-<%=form_for car do |f| %>
+      <% if params[:brand_id] && !params[:brand_id].blank? %>
+        <%= f.hidden_field :brand_id %>
+      <% else %>
+        <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
+        <%= f.fields_for :brand, Brand.new do |brand_form| %>
+            <%= brand_form.label :name, "OR new brand name: " %>
+            <%= brand_form.text_field :name, hide_label: true %>
+          <%= brand_form.label :logo, "AND link to Logo photo: " %>
+          <%= brand_form.text_field :logo, hide_label: true %>
+        <% end %>
+      <% end %>
 
-  <% if params[:brand_id] && !params[:brand_id].blank? %>
-    <%= f.hidden_field :brand_id %>
-  <% else %>
-    <%= f.label :brand_id %>
-    <%= f.collection_select :brand_id, Brand.all, :id, :name, :include_blank => true %>
-    <br>
-    <%= f.fields_for :brand, Brand.new do |brand_form| %>
-        <br>
-        <%= brand_form.label :name, "OR new brand name: " %> <br>
-        <%= brand_form.text_field :name %>
-        <br>
-      <br>
-      <%= brand_form.label :logo, "AND link to Logo photo: " %>
-      <br>
-      <%= brand_form.text_field :logo %>
-      <br>
+
+      <%= f.label :name, "Model Name: " %> <br>
+      <%= f.text_field :name, hide_label: true %>
+      <%= f.text_field :year %>
+      <%= f.label :photo_url, "Photo URL: " %> <br>
+      <%= f.text_field :photo_url, hide_label: true %>
+
+      <%= f.label :car_type_id, "Car Type: (select multiple if this car comes in different styles)" %>
+      <%= f.collection_check_boxes :car_type_ids, CarType.all, :id, :name, hide_label: true %>
+
+      <!-- new car type field -->
+      <%= f.fields_for :car_types, CarType.new do |car_type_form| %>
+
+        <%= car_type_form.label :name, "OR enter name of New Car Type: " %>
+        <%= car_type_form.text_field :name, hide_label: true %>
+
+      <% end %>
+      <!-- eventually make a "do you own this car" checkbox and color selector to make a user_car -->
+
+      <%= f.submit %>
     <% end %>
-    <br>
-    <br>
-  <% end %>
-
-
-  <%= f.label :name, "Model Name: " %> <br>
-  <%= f.text_field :name %>
-  <br>
-  <br>
-  <%= f.label :year, "Year: " %> <br>
-  <%= f.text_field :year %>
-  <br>
-  <br>
-  <%= f.label :photo_url, "Photo URL: " %> <br>
-  <%= f.text_field :photo_url %>
-  <br>
-  <br>
-  <%= f.label :car_type_id, "Car Type: (select multiple if this car comes in different styles)" %>
-  <%= f.collection_check_boxes :car_type_ids, CarType.all, :id, :name %>
-  <br>
-  <!-- new car type field -->
-  <%= f.fields_for :car_types, CarType.new do |car_type_form| %>
-    <br>
-    <%= car_type_form.label :name, "OR enter name of New Car Type: " %> <br>
-    <%= car_type_form.text_field :name %>
-    <br>
-  <% end %>
-  <!-- eventually make a "do you own this car" checkbox and color selector to make a user_car -->
-  <br>
-  <br>
-  <%= f.submit %>
-<% end %>
+    </div>
+</div>
