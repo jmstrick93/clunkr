@@ -1,36 +1,31 @@
-<button id="prev-car-button" <%='disabled' if @car.id <= 1 %>>Previous Car</button> ... <button id="next-car-button" >Next Car</button>
-<div class="car-show-info">
-</div>
+<div><h1><%= @car.full_title %></h1><%= link_to "Edit Car", edit_car_path(@car) %> <br> <%= delete_button(@car) %></div>
+<br>
 
-<script id="car-show-template" type="text/x-handlebars-template">
-  <br>
-  <img src="{{photo_url}}" alt="car photo" width="600" height="400">
-  <!-- would be cool to have a "added by" section  -->
+<%= image_tag(@car.photo_url, size: "600x400") %>
+<!-- would be cool to have a "added by" section  -->
 
-    <p><strong>Brand: </strong> <a href="/brands/{{brand_id}}">{{brand.name}}</a></p>
-    <h4>Types: </h4> <!-- need to use a hb partial or an each? -->
-    <ul>
-    {{#each this.car_types}}
-      <li>{{name}}</li>
-    {{/each}}
-    </ul>
+  <p><strong>Brand: </strong> <%= link_to @car.brand_name, brand_path(@car.brand) %></p>
 
-   <h4>Resources: </h4> <!--another hb partial or each? -->
-   <ul>
-     {{#each this.resources}}
-     {{debug}}
-     <li><a href="/cars/{{this.id}}/resources/{{id}}">{{title}}</a></li>
-     {{/each}}
-     <br>
-      <a href="/cars/{{id}}/resources/new">Add Resource For This Car</a>
+  <h4>Types: </h4>
+  <ul>
+    <% @car.car_types.each do |t| %>
+      <li><%= t.name%></li>
+    <% end %>
+  </ul>
 
+ <h4>Resources: </h4>
+ <ul>
+   <% @car.resources.each do |r| %>
+   <!-- had to create custom route for this below; normal car_resource_path only designed to work when used from a car/1/resources kind of route; that one was mixing up the car id and the resource id -->
+     <li><%= link_to r.full_title, "/cars/#{params[:id]}/resources/#{r.id}"  %></li>
+   <% end %>
+   <br>
+    <%= add_resource_button %>
+ </ul>
 
-  <!-- DONT FORGET TO FIX THIS  -->
-
-   <h4>Owners: {{users.length}}</h4> <!-- another hb partial or each? -->
-   <ul>
-    {{#each this.users}}
-    <li><a href="/users/1">{{username}}</a></li>
-    {{/each}}
-    </ul>
-</script>
+ <h4>Owners: <%= @car.users.uniq.count %></h4>
+  <ul>
+    <% @car.users.uniq.each do |user| %>
+      <li><%= link_to user.username, user_path(user) %></li>
+    <% end %>
+  </ul>
