@@ -38,9 +38,9 @@
 </div>
 
 <script id="car-index-template" type="text/x-handlebars-template">
-  <div class='col-lg-3 car-index-item' align='center' >
+  <div class='col car-index-item' align='center' >
     <a href="/cars/{{id}}">
-      <div class = "card">
+      <div class = "card" style='min-width: 12rem; max-width: 15rem'>
         <img class ='card-img-top' src="{{photo_url}}" />
         <div class='card-body'>
           <h5 class='card-title'><a href="/cars/{{id}}">{{year}} {{brand.name}} {{name}}</a></h5>
